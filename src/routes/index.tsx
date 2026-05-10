@@ -14,6 +14,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import portrait from "@/assets/prakshali.jpg";
+import heroCinematic from "@/assets/hero-cinematic.jpg";
+import projectFeature from "@/assets/project-feature.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -105,92 +107,104 @@ function Section({
 function Index() {
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-cream text-ink">
-      {/* NAV */}
-      <header className="sticky top-0 z-50 border-b border-black/5 bg-cream/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="#top" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight">
-            <span className="grid h-6 w-6 place-items-center rounded-md bg-ink text-cream text-[11px] font-bold">P</span>
-            Prakshali<span className="text-flame">®</span>
-          </a>
-          <nav className="hidden items-center gap-7 text-[13px] text-ink/70 md:flex">
-            <a href="#work" className="transition hover:text-ink">Work</a>
-            <a href="#about" className="transition hover:text-ink">About</a>
-            <a href="#experience" className="transition hover:text-ink">Experience</a>
-            <a href="#skills" className="transition hover:text-ink">Skills</a>
-            <a href="#education" className="transition hover:text-ink">Education</a>
-          </nav>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-[13px] font-medium text-cream transition hover:opacity-90"
-          >
-            Let's talk <ArrowRight className="h-3.5 w-3.5" />
-          </a>
+      {/* HERO — dark cinematic */}
+      <section
+        id="top"
+        className="relative isolate min-h-[100svh] overflow-hidden bg-ink text-cream"
+      >
+        {/* Background image */}
+        <img
+          src={heroCinematic}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover opacity-90"
+        />
+        {/* Vignette + gradients */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/85" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(228,80,40,0.25),transparent_50%)]" />
+
+        {/* Top announcement bar */}
+        <div className="relative z-10 border-b border-white/10 bg-black/40 backdrop-blur-sm">
+          <div className="mx-auto flex max-w-7xl items-center justify-center gap-3 px-6 py-2.5 text-[12px] tracking-wide text-white/80">
+            <span className="text-flame">●</span> AVAILABLE FOR 2026 GRAD ROLES
+            <span className="text-white/30">●</span>
+            <a href="#contact" className="underline-offset-4 hover:underline">LEARN MORE</a>
+          </div>
         </div>
-      </header>
 
-      {/* HERO */}
-      <section id="top" className="relative border-b border-black/5">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pb-24 pt-20 sm:pt-28 lg:grid-cols-[200px_1fr]">
-          <div className="lg:pt-3">
-            <Eyebrow icon={Sparkles} label="Intro" />
+        {/* Top row: wordmark + pill nav */}
+        <div className="relative z-10 mx-auto flex max-w-7xl items-start justify-between px-6 pt-8 sm:pt-12">
+          <div className="font-display text-[44px] font-semibold leading-none tracking-tight text-white/30 sm:text-[72px] lg:text-[96px]">
+            Prakshali<span className="text-white/20">®</span>
           </div>
-          <div className="relative">
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9 }}
-              className="font-display text-[56px] font-semibold leading-[0.96] tracking-tight sm:text-[88px] lg:text-[120px]"
-            >
-              Not just another <br className="hidden sm:block" />
-              analyst.{" "}
-              <span className="text-faded">
-                Not just another <br className="hidden sm:block" />
-                portfolio.
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-10 max-w-xl text-[17px] leading-relaxed text-muted"
-            >
-              I'm Prakshali — a Business Analytics graduate &amp; software builder
-              turning messy data into products people actually use.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.35 }}
-              className="mt-10 flex flex-wrap items-center gap-3"
-            >
+          <nav className="hidden gap-1 rounded-full border border-white/15 bg-white/[0.06] p-1 backdrop-blur-md md:flex">
+            {[
+              { l: "About", h: "#about" },
+              { l: "Work", h: "#work" },
+              { l: "Experience", h: "#experience" },
+              { l: "Contact", h: "#contact" },
+            ].map((n) => (
               <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[14px] font-medium text-cream transition hover:opacity-90"
+                key={n.l}
+                href={n.h}
+                className="rounded-full px-4 py-2 text-[13px] text-white/85 transition hover:bg-white/10 hover:text-white"
               >
-                Book a meeting
+                {n.l}
               </a>
-              <a
-                href="#work"
-                className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-6 py-3 text-[14px] transition hover:bg-ink/5"
-              >
-                See selected work <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </motion.div>
+            ))}
+          </nav>
+        </div>
 
-            <div className="mt-16 flex items-center gap-6 text-[12px] uppercase tracking-[0.18em] text-muted">
-              <span className="flex items-center gap-2">
-                <span className="relative inline-flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                </span>
-                Available · 2026
+        {/* Bottom-left: tagline + CTA */}
+        <div className="relative z-10 mx-auto flex max-w-7xl items-end justify-between gap-10 px-6 pb-12 pt-32 sm:pb-16 lg:pt-48">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            className="max-w-xl"
+          >
+            <h1 className="font-display text-[32px] font-semibold leading-[1.1] tracking-tight text-white sm:text-[44px]">
+              Not just another analyst. <br />
+              Not just another portfolio. <br />
+              <span className="text-white/55">
+                Prakshali turns messy data into products people actually use.
               </span>
-              <span>·</span>
-              <span>Chicago, IL</span>
+            </h1>
+            <a
+              href="#contact"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[14px] font-medium text-ink transition hover:bg-white/90"
+            >
+              Book a meeting
+            </a>
+          </motion.div>
+
+          {/* Bottom-right: featured project card */}
+          <motion.a
+            href="#work"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            className="hidden w-[300px] shrink-0 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.05] p-3 backdrop-blur-md transition hover:-translate-y-1 hover:border-white/30 lg:block"
+          >
+            <p className="px-2 pb-3 pt-1 font-display text-[28px] font-semibold leading-tight text-white">
+              Projects <br /> made easy.
+            </p>
+            <img
+              src={projectFeature}
+              alt="Featured project"
+              loading="lazy"
+              className="aspect-square w-full rounded-xl object-cover"
+            />
+            <div className="flex items-center justify-between px-2 py-3">
+              <div>
+                <p className="text-[14px] font-medium text-white">
+                  Transit Safe<span className="text-flame">®</span>
+                </p>
+                <p className="text-[12px] text-white/60">A safer commute, by data</p>
+              </div>
+              <ArrowUpRight className="h-4 w-4 text-white/60" />
             </div>
-          </div>
+          </motion.a>
         </div>
       </section>
 
