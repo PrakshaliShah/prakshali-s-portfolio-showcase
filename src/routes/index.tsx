@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
+import { useRef } from "react";
 import {
   ArrowUpRight,
   Mail,
@@ -7,12 +8,10 @@ import {
   Github,
   MapPin,
   GraduationCap,
-  Briefcase,
   Sparkles,
   Quote,
   Headphones,
 } from "lucide-react";
-import { SpotlightCard } from "@/components/SpotlightCard";
 import portrait from "@/assets/prakshali.jpg";
 
 export const Route = createFileRoute("/")({
@@ -35,349 +34,559 @@ export const Route = createFileRoute("/")({
 });
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 28 },
   show: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: i * 0.06, ease: [0.21, 0.47, 0.32, 0.98] as [number, number, number, number] },
+    transition: {
+      duration: 0.8,
+      delay: i * 0.06,
+      ease: [0.21, 0.47, 0.32, 0.98] as [number, number, number, number],
+    },
   }),
 };
 
-function Index() {
+function Section({
+  id,
+  eyebrow,
+  children,
+  className = "",
+}: {
+  id?: string;
+  eyebrow?: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <section
+      id={id}
+      className={`relative mx-auto w-full max-w-6xl px-6 py-24 sm:py-32 ${className}`}
+    >
+      {eyebrow && (
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp}
+          className="mb-10 flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-muted-foreground"
+        >
+          <span className="h-px w-10 bg-white/25" />
+          {eyebrow}
+        </motion.div>
+      )}
+      {children}
+    </section>
+  );
+}
+
+function Index() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
+
+  return (
+    <main className="relative min-h-screen overflow-x-hidden">
       {/* Ambient background washes */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-[#000319]" />
-        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-violet/30 blur-[140px]" style={{ background: "radial-gradient(circle, oklch(0.72 0.22 295 / 35%), transparent 60%)" }} />
-        <div className="absolute -bottom-40 -right-32 h-[560px] w-[560px] rounded-full blur-[160px]" style={{ background: "radial-gradient(circle, oklch(0.85 0.16 200 / 28%), transparent 60%)" }} />
         <div
-          className="absolute inset-0 opacity-[0.07]"
+          className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full blur-[140px]"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.72 0.22 295 / 35%), transparent 60%)",
+          }}
+        />
+        <div
+          className="absolute top-[40%] -right-32 h-[560px] w-[560px] rounded-full blur-[160px]"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.85 0.16 200 / 25%), transparent 60%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.05]"
           style={{
             backgroundImage:
               "linear-gradient(oklch(1 0 0 / 1) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0 / 1) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-            maskImage: "radial-gradient(ellipse at center, black 30%, transparent 75%)",
+            backgroundSize: "72px 72px",
+            maskImage:
+              "radial-gradient(ellipse at center, black 30%, transparent 80%)",
           }}
         />
       </div>
 
-      {/* Top nav */}
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-6 pt-8">
-        <div className="flex items-center gap-2 text-sm tracking-wide">
-          <span className="inline-block h-2 w-2 rounded-full bg-aurora" style={{ animation: "pulse-dot 2.4s ease-in-out infinite" }} />
-          <span className="text-muted-foreground">Prakshali / Portfolio · 2026</span>
+      {/* Sticky nav */}
+      <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+          <a href="#top" className="flex items-center gap-2 text-sm tracking-wide">
+            <span
+              className="inline-block h-2 w-2 rounded-full bg-aurora"
+              style={{ animation: "pulse-dot 2.4s ease-in-out infinite" }}
+            />
+            <span className="font-medium">Prakshali Shah</span>
+          </a>
+          <nav className="hidden items-center gap-8 text-xs uppercase tracking-[0.2em] text-muted-foreground sm:flex">
+            <a href="#work" className="transition hover:text-foreground">Work</a>
+            <a href="#about" className="transition hover:text-foreground">About</a>
+            <a href="#experience" className="transition hover:text-foreground">Experience</a>
+            <a href="#contact" className="transition hover:text-foreground">Contact</a>
+          </nav>
+          <a
+            href="mailto:hello@prakshali.com"
+            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium tracking-wide transition hover:border-white/30 hover:bg-white/10"
+          >
+            Let's talk →
+          </a>
         </div>
-        <a
-          href="mailto:hello@prakshali.com"
-          className="hidden rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium tracking-wide backdrop-blur-md transition hover:border-white/30 hover:bg-white/10 sm:inline-flex"
-        >
-          Let's talk →
-        </a>
       </header>
 
-      {/* Bento Grid */}
-      <section className="mx-auto max-w-7xl px-6 py-10 sm:py-16">
+      {/* HERO */}
+      <section
+        id="top"
+        ref={heroRef}
+        className="relative flex min-h-[100svh] items-center justify-center px-6 pt-32"
+      >
         <motion.div
-          initial="hidden"
-          animate="show"
-          className="grid auto-rows-[minmax(180px,auto)] grid-cols-1 gap-4 sm:grid-cols-4 lg:grid-cols-6"
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="mx-auto w-full max-w-5xl text-center"
         >
-          {/* HERO — name + tagline + photo (2x2 / 4x2) */}
-          <motion.div variants={fadeUp} custom={0} className="sm:col-span-4 lg:col-span-4 lg:row-span-2">
-            <SpotlightCard className="h-full">
-              <div className="grid h-full grid-cols-1 gap-6 p-8 sm:grid-cols-[1.3fr_1fr] sm:p-10">
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Open to 2026 grad roles
-                    </span>
-                    <h1 className="mt-6 font-display text-5xl leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
-                      Prakshali <br />
-                      <span className="text-aurora italic">Shah.</span>
-                    </h1>
-                    <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-                      Business Analytics graduate &amp; software builder turning messy
-                      data into products people actually use.
-                    </p>
-                  </div>
-                  <div className="mt-8 flex flex-wrap items-center gap-3">
-                    <a
-                      href="mailto:hello@prakshali.com"
-                      className="inline-flex items-center gap-2 rounded-full bg-aurora px-5 py-2.5 text-sm font-medium text-[#000319] transition hover:opacity-90"
-                    >
-                      Get in touch <ArrowUpRight className="h-4 w-4" />
-                    </a>
-                    <a
-                      href="#"
-                      className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm text-foreground/90 transition hover:bg-white/5"
-                    >
-                      Download CV
-                    </a>
-                  </div>
-                </div>
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-2xl bg-aurora opacity-30 blur-2xl" />
-                  <div className="relative h-full min-h-[260px] overflow-hidden rounded-2xl border border-white/10">
-                    <img
-                      src={portrait}
-                      alt="Portrait of Prakshali Shah"
-                      width={1024}
-                      height={1024}
-                      className="h-full w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#000319]/70 via-transparent to-transparent" />
-                  </div>
-                </div>
-              </div>
-            </SpotlightCard>
-          </motion.div>
+          <motion.span
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[11px] uppercase tracking-[0.22em] text-muted-foreground"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            Open to 2026 grad roles · Chicago
+          </motion.span>
 
-          {/* EXPERIENCE — tall (2x2) */}
-          <motion.div variants={fadeUp} custom={1} className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
-            <SpotlightCard className="h-full" spotlightColor="oklch(0.72 0.22 295 / 30%)">
-              <div className="flex h-full flex-col p-7">
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    <Briefcase className="h-3.5 w-3.5" /> Experience
-                  </span>
-                </div>
-                <h3 className="mt-3 font-display text-3xl leading-tight">Where I've shipped.</h3>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="mt-8 font-display text-[64px] leading-[0.92] tracking-tight sm:text-[96px] lg:text-[140px]"
+          >
+            Prakshali <br />
+            <span className="text-aurora italic">Shah.</span>
+          </motion.h1>
 
-                <ul className="mt-6 space-y-5">
-                  <li className="group/item rounded-2xl border border-white/8 bg-white/[0.03] p-4 transition hover:border-white/20">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <p className="text-sm font-semibold">Numerator</p>
-                        <p className="text-xs text-muted-foreground">Consumer Insights</p>
-                      </div>
-                      <span className="text-[10px] text-muted-foreground">2024 — 2025</span>
-                    </div>
-                    <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                      Surfaced behavioral signals across millions of CPG transactions
-                      for Fortune-500 brand teams.
-                    </p>
-                  </li>
-                  <li className="group/item rounded-2xl border border-white/8 bg-white/[0.03] p-4 transition hover:border-white/20">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <p className="text-sm font-semibold">Roosevelt University</p>
-                        <p className="text-xs text-muted-foreground">Graduate Assistant</p>
-                      </div>
-                      <span className="text-[10px] text-muted-foreground">2024 — Now</span>
-                    </div>
-                    <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                      Teaching assistant for analytics &amp; data viz coursework.
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </SpotlightCard>
-          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+          >
+            Business Analytics graduate &amp; software builder turning messy data
+            into products people actually use.
+          </motion.p>
 
-          {/* PROJECTS — wide (4x1) */}
-          <motion.div variants={fadeUp} custom={2} className="sm:col-span-4 lg:col-span-4">
-            <SpotlightCard className="h-full" spotlightColor="oklch(0.85 0.16 200 / 28%)">
-              <div className="flex h-full flex-col p-7">
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    <Sparkles className="h-3.5 w-3.5" /> Selected Work
-                  </span>
-                  <ArrowUpRight className="h-4 w-4 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground" />
-                </div>
-                <div className="mt-5 grid flex-1 gap-4 sm:grid-cols-2">
-                  <a href="#" className="group/p relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-violet-500/10 to-transparent p-5 transition hover:border-violet-300/40">
-                    <div className="flex items-center justify-between">
-                      <p className="font-display text-2xl">Transit Safe: CTA</p>
-                      <span className="rounded-full border border-white/15 px-2 py-0.5 text-[10px] uppercase tracking-wider text-muted-foreground">Python · FastAPI</span>
-                    </div>
-                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                      Real-time safety scoring for Chicago Transit Authority routes —
-                      ML model + map-based dashboard.
-                    </p>
-                    <div className="mt-4 inline-flex items-center gap-1 text-xs text-foreground/90">
-                      View case study <ArrowUpRight className="h-3.5 w-3.5" />
-                    </div>
-                  </a>
-                  <a href="#" className="group/p relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-cyan-400/10 to-transparent p-5 transition hover:border-cyan-300/40">
-                    <div className="flex items-center justify-between">
-                      <p className="font-display text-2xl">Openly</p>
-                      <span className="rounded-full border border-white/15 px-2 py-0.5 text-[10px] uppercase tracking-wider text-muted-foreground">AI Startup</span>
-                    </div>
-                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                      Founding analytics + product hire. Shipped onboarding funnel
-                      experiments that 2.4×'d activation.
-                    </p>
-                    <div className="mt-4 inline-flex items-center gap-1 text-xs text-foreground/90">
-                      Visit project <ArrowUpRight className="h-3.5 w-3.5" />
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </SpotlightCard>
-          </motion.div>
-
-          {/* SKILLS — 2x1 */}
-          <motion.div variants={fadeUp} custom={3} className="sm:col-span-2 lg:col-span-3">
-            <SpotlightCard className="h-full">
-              <div className="flex h-full flex-col p-7">
-                <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Toolbox</span>
-                <h3 className="mt-3 font-display text-3xl">The stack.</h3>
-                <div className="mt-6 grid grid-cols-5 gap-3">
-                  {[
-                    { name: "Python", color: "from-yellow-300 to-blue-400" },
-                    { name: "SQL", color: "from-sky-300 to-indigo-500" },
-                    { name: "Tableau", color: "from-blue-400 to-violet-500" },
-                    { name: "Power BI", color: "from-amber-300 to-yellow-500" },
-                    { name: "Docker", color: "from-cyan-300 to-blue-500" },
-                  ].map((s) => (
-                    <div key={s.name} className="group/s flex flex-col items-center gap-2">
-                      <div className="relative grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/[0.04] transition group-hover/s:border-white/30 group-hover/s:-translate-y-1">
-                        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${s.color} opacity-0 blur-xl transition group-hover/s:opacity-30`} />
-                        <span className={`relative font-display text-lg bg-gradient-to-br ${s.color} bg-clip-text text-transparent`}>
-                          {s.name.slice(0, 2)}
-                        </span>
-                      </div>
-                      <span className="text-[10px] tracking-wide text-muted-foreground">{s.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </SpotlightCard>
-          </motion.div>
-
-          {/* EDUCATION — 2x1 */}
-          <motion.div variants={fadeUp} custom={4} className="sm:col-span-2 lg:col-span-3">
-            <SpotlightCard className="h-full" spotlightColor="oklch(0.72 0.22 295 / 28%)">
-              <div className="flex h-full flex-col justify-between p-7">
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    <GraduationCap className="h-3.5 w-3.5" /> Education
-                  </span>
-                  <span className="rounded-full border border-white/15 px-2 py-0.5 text-[10px] tracking-wider text-muted-foreground">
-                    Expected May 2026
-                  </span>
-                </div>
-                <div>
-                  <p className="mt-6 text-xs uppercase tracking-wider text-muted-foreground">Master of Science</p>
-                  <h3 className="mt-1 font-display text-3xl leading-tight">
-                    Business Analytics
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">Roosevelt University · Chicago, IL</p>
-                </div>
-                <div className="mt-6 flex items-center gap-3 text-xs text-muted-foreground">
-                  <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
-                  <span>GPA · Forecasting · ML · Optimization</span>
-                </div>
-              </div>
-            </SpotlightCard>
-          </motion.div>
-
-          {/* LOCATION / AVAILABILITY — 1x1 */}
-          <motion.div variants={fadeUp} custom={5} className="sm:col-span-2 lg:col-span-2">
-            <SpotlightCard className="h-full">
-              <div className="flex h-full flex-col justify-between p-6">
-                <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  <MapPin className="h-3.5 w-3.5" /> Based In
-                </span>
-                <div>
-                  <p className="font-display text-3xl">Chicago, IL</p>
-                  <p className="mt-1 text-xs text-muted-foreground">CST · UTC −6</p>
-                </div>
-                <div className="flex items-center gap-2 text-xs">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                  </span>
-                  <span className="text-emerald-300">Available · Summer 2026</span>
-                </div>
-              </div>
-            </SpotlightCard>
-          </motion.div>
-
-          {/* CURRENTLY — 1x1 */}
-          <motion.div variants={fadeUp} custom={6} className="sm:col-span-2 lg:col-span-2">
-            <SpotlightCard className="h-full" spotlightColor="oklch(0.85 0.16 200 / 25%)">
-              <div className="flex h-full flex-col justify-between p-6">
-                <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  <Headphones className="h-3.5 w-3.5" /> Currently
-                </span>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex items-start gap-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-violet-400" />
-                    <span><span className="text-muted-foreground">Building</span> a forecasting agent in LangGraph.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-cyan-300" />
-                    <span><span className="text-muted-foreground">Reading</span> "Storytelling with Data".</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                    <span><span className="text-muted-foreground">Listening</span> Bonobo · Fragments.</span>
-                  </li>
-                </ul>
-              </div>
-            </SpotlightCard>
-          </motion.div>
-
-          {/* TESTIMONIAL — 2x1 */}
-          <motion.div variants={fadeUp} custom={7} className="sm:col-span-4 lg:col-span-2">
-            <SpotlightCard className="h-full">
-              <div className="flex h-full flex-col justify-between p-6">
-                <Quote className="h-6 w-6 text-aurora" style={{ color: "transparent", fill: "url(#g)" }} />
-                <p className="font-display text-lg leading-snug">
-                  "Prakshali turns ambiguity into clarity faster than anyone on
-                  the team — and ships the dashboard to prove it."
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="h-9 w-9 rounded-full bg-aurora" />
-                  <div>
-                    <p className="text-xs font-semibold">Manager · Numerator</p>
-                    <p className="text-[10px] text-muted-foreground">Consumer Insights Lead</p>
-                  </div>
-                </div>
-              </div>
-            </SpotlightCard>
-          </motion.div>
-
-          {/* CONTACT — wide CTA */}
-          <motion.div variants={fadeUp} custom={8} className="sm:col-span-4 lg:col-span-6">
-            <SpotlightCard className="h-full" spotlightColor="oklch(0.72 0.22 295 / 35%)">
-              <div className="grid items-center gap-6 p-8 sm:grid-cols-[1.4fr_1fr] sm:p-10">
-                <div>
-                  <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Let's collaborate</span>
-                  <h3 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-                    Have a problem worth <span className="text-aurora italic">solving?</span>
-                  </h3>
-                  <p className="mt-3 max-w-lg text-sm text-muted-foreground">
-                    Looking for full-time analytics &amp; product roles starting summer 2026.
-                    I reply within a day.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-3">
-                  <a href="mailto:hello@prakshali.com" className="group/c flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition hover:border-white/30">
-                    <span className="flex items-center gap-3 text-sm"><Mail className="h-4 w-4" /> hello@prakshali.com</span>
-                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition group-hover/c:translate-x-0.5 group-hover/c:-translate-y-0.5 group-hover/c:text-foreground" />
-                  </a>
-                  <a href="#" className="group/c flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition hover:border-white/30">
-                    <span className="flex items-center gap-3 text-sm"><Linkedin className="h-4 w-4" /> /in/prakshali-shah</span>
-                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition group-hover/c:translate-x-0.5 group-hover/c:-translate-y-0.5 group-hover/c:text-foreground" />
-                  </a>
-                  <a href="#" className="group/c flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition hover:border-white/30">
-                    <span className="flex items-center gap-3 text-sm"><Github className="h-4 w-4" /> github.com/prakshali</span>
-                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition group-hover/c:translate-x-0.5 group-hover/c:-translate-y-0.5 group-hover/c:text-foreground" />
-                  </a>
-                </div>
-              </div>
-            </SpotlightCard>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.45 }}
+            className="mt-10 flex flex-wrap items-center justify-center gap-3"
+          >
+            <a
+              href="#work"
+              className="inline-flex items-center gap-2 rounded-full bg-aurora px-6 py-3 text-sm font-medium text-[#000319] transition hover:opacity-90"
+            >
+              See selected work <ArrowUpRight className="h-4 w-4" />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm transition hover:bg-white/5"
+            >
+              Get in touch
+            </a>
           </motion.div>
         </motion.div>
 
-        <footer className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-8 text-xs text-muted-foreground sm:flex-row">
-          <p>© 2026 Prakshali Shah. Designed &amp; built with care.</p>
-          <p className="tracking-[0.2em] uppercase">Crafted in Chicago</p>
-        </footer>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          Scroll ↓
+        </div>
       </section>
+
+      {/* SELECTED WORK */}
+      <Section id="work" eyebrow="Selected Work · 2024 — 2026">
+        <motion.h2
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp}
+          className="font-display text-5xl leading-[0.95] tracking-tight sm:text-7xl"
+        >
+          Things I've <span className="italic text-aurora">shipped.</span>
+        </motion.h2>
+
+        <div className="mt-16 grid gap-8 sm:grid-cols-2">
+          {[
+            {
+              name: "Transit Safe: CTA",
+              tag: "Python · FastAPI · ML",
+              desc: "Real-time safety scoring for Chicago Transit Authority routes — ML model paired with a map-based dashboard to surface risk hotspots.",
+              gradient: "from-violet-500/30 via-violet-500/5 to-transparent",
+              border: "hover:border-violet-300/40",
+            },
+            {
+              name: "Openly",
+              tag: "AI Startup · Analytics",
+              desc: "Founding analytics + product hire. Shipped onboarding funnel experiments that 2.4×'d activation in eight weeks.",
+              gradient: "from-cyan-400/30 via-cyan-400/5 to-transparent",
+              border: "hover:border-cyan-300/40",
+            },
+          ].map((p, i) => (
+            <motion.a
+              key={p.name}
+              href="#"
+              custom={i}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={fadeUp}
+              className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8 transition ${p.border}`}
+            >
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${p.gradient} opacity-60 transition group-hover:opacity-100`}
+              />
+              <div className="relative flex h-full flex-col justify-between gap-12">
+                <div className="flex items-start justify-between">
+                  <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[10px] uppercase tracking-wider text-muted-foreground">
+                    {p.tag}
+                  </span>
+                  <ArrowUpRight className="h-5 w-5 text-muted-foreground transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-foreground" />
+                </div>
+                <div>
+                  <h3 className="font-display text-4xl leading-tight sm:text-5xl">
+                    {p.name}
+                  </h3>
+                  <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+                    {p.desc}
+                  </p>
+                </div>
+              </div>
+            </motion.a>
+          ))}
+        </div>
+      </Section>
+
+      {/* ABOUT */}
+      <Section id="about" eyebrow="About">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="relative"
+          >
+            <div className="absolute -inset-4 rounded-[2rem] bg-aurora opacity-25 blur-3xl" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10">
+              <img
+                src={portrait}
+                alt="Portrait of Prakshali Shah"
+                width={1024}
+                height={1024}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#000319]/60 via-transparent to-transparent" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            custom={1}
+          >
+            <h2 className="font-display text-5xl leading-[0.95] tracking-tight sm:text-6xl">
+              A builder who <span className="italic text-aurora">thinks in data.</span>
+            </h2>
+            <p className="mt-8 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              I'm a Master's candidate in Business Analytics at Roosevelt
+              University, currently working with consumer insights at scale. My
+              favourite problems sit at the seam of data, design, and product —
+              where a clean dashboard or a small ML model can reshape how a team
+              decides.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Off-screen: Bonobo on repeat, half-finished books on storytelling
+              with data, long walks along Lake Michigan.
+            </p>
+            <div className="mt-8 grid grid-cols-2 gap-4 sm:max-w-md">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  <MapPin className="mr-1 inline h-3 w-3" /> Based
+                </p>
+                <p className="mt-2 font-display text-xl">Chicago, IL</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  <span className="relative mr-2 inline-flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                  </span>
+                  Status
+                </p>
+                <p className="mt-2 font-display text-xl">Available</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* EXPERIENCE */}
+      <Section id="experience" eyebrow="Experience">
+        <motion.h2
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp}
+          className="font-display text-5xl leading-[0.95] tracking-tight sm:text-7xl"
+        >
+          Where I've <span className="italic text-aurora">worked.</span>
+        </motion.h2>
+
+        <div className="mt-16 divide-y divide-white/8 border-y border-white/8">
+          {[
+            {
+              company: "Numerator",
+              role: "Consumer Insights · Analyst",
+              period: "2024 — 2025",
+              note: "Surfaced behavioral signals across millions of CPG transactions for Fortune-500 brand teams.",
+            },
+            {
+              company: "Roosevelt University",
+              role: "Graduate Assistant",
+              period: "2024 — Now",
+              note: "Teaching assistant for analytics & data viz coursework; supporting faculty research on forecasting.",
+            },
+          ].map((j, i) => (
+            <motion.div
+              key={j.company}
+              custom={i}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={fadeUp}
+              className="group grid gap-6 py-10 sm:grid-cols-[1fr_2fr_auto] sm:items-baseline"
+            >
+              <div>
+                <p className="font-display text-3xl">{j.company}</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  {j.role}
+                </p>
+              </div>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {j.note}
+              </p>
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {j.period}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* SKILLS */}
+      <Section eyebrow="Toolbox">
+        <motion.h2
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp}
+          className="font-display text-5xl leading-[0.95] tracking-tight sm:text-7xl"
+        >
+          The <span className="italic text-aurora">stack.</span>
+        </motion.h2>
+
+        <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-5">
+          {[
+            { name: "Python", color: "from-yellow-300 to-blue-400" },
+            { name: "SQL", color: "from-sky-300 to-indigo-500" },
+            { name: "Tableau", color: "from-blue-400 to-violet-500" },
+            { name: "Power BI", color: "from-amber-300 to-yellow-500" },
+            { name: "Docker", color: "from-cyan-300 to-blue-500" },
+          ].map((s, i) => (
+            <motion.div
+              key={s.name}
+              custom={i}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={fadeUp}
+              className="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-1 hover:border-white/30"
+            >
+              <div className="relative grid h-16 w-16 place-items-center rounded-2xl border border-white/10 bg-white/[0.04]">
+                <div
+                  className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${s.color} opacity-0 blur-xl transition group-hover:opacity-30`}
+                />
+                <span
+                  className={`relative font-display text-xl bg-gradient-to-br ${s.color} bg-clip-text text-transparent`}
+                >
+                  {s.name.slice(0, 2)}
+                </span>
+              </div>
+              <span className="text-xs tracking-wide text-muted-foreground">
+                {s.name}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* EDUCATION */}
+      <Section eyebrow="Education">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp}
+          className="rounded-3xl border border-white/10 bg-white/[0.02] p-10 sm:p-14"
+        >
+          <div className="flex flex-wrap items-start justify-between gap-6">
+            <div>
+              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                <GraduationCap className="h-3.5 w-3.5" /> Master of Science
+              </span>
+              <h3 className="mt-4 font-display text-4xl leading-tight sm:text-6xl">
+                Business <span className="italic text-aurora">Analytics.</span>
+              </h3>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Roosevelt University · Chicago, IL
+              </p>
+            </div>
+            <span className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-wider text-muted-foreground">
+              Expected May 2026
+            </span>
+          </div>
+          <div className="mt-10 flex flex-wrap gap-2">
+            {["Forecasting", "Machine Learning", "Optimization", "Data Viz", "SQL"].map(
+              (t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-white/10 px-3 py-1 text-xs text-muted-foreground"
+                >
+                  {t}
+                </span>
+              ),
+            )}
+          </div>
+        </motion.div>
+      </Section>
+
+      {/* CURRENTLY + TESTIMONIAL */}
+      <Section eyebrow="Off the clock">
+        <div className="grid gap-6 lg:grid-cols-5">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={fadeUp}
+            className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 lg:col-span-2"
+          >
+            <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+              <Headphones className="h-3.5 w-3.5" /> Currently
+            </span>
+            <ul className="mt-6 space-y-4 text-base">
+              <li className="flex items-start gap-3">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
+                <span>
+                  <span className="text-muted-foreground">Building</span> a
+                  forecasting agent in LangGraph.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                <span>
+                  <span className="text-muted-foreground">Reading</span>{" "}
+                  "Storytelling with Data".
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                <span>
+                  <span className="text-muted-foreground">Listening</span>{" "}
+                  Bonobo · Fragments.
+                </span>
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={fadeUp}
+            custom={1}
+            className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-10 lg:col-span-3"
+          >
+            <Quote className="h-8 w-8 text-aurora opacity-60" />
+            <p className="mt-6 font-display text-2xl leading-snug sm:text-3xl">
+              "Prakshali turns ambiguity into clarity faster than anyone on the
+              team — and ships the dashboard to prove it."
+            </p>
+            <div className="mt-8 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-full bg-aurora" />
+              <div>
+                <p className="text-sm font-semibold">Manager · Numerator</p>
+                <p className="text-xs text-muted-foreground">
+                  Consumer Insights Lead
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* CONTACT */}
+      <Section id="contact" eyebrow="Contact">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp}
+          className="text-center"
+        >
+          <Sparkles className="mx-auto h-6 w-6 text-aurora opacity-70" />
+          <h2 className="mx-auto mt-6 max-w-3xl font-display text-5xl leading-[0.95] tracking-tight sm:text-7xl">
+            Have a problem worth{" "}
+            <span className="italic text-aurora">solving?</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Looking for full-time analytics &amp; product roles starting summer
+            2026. I reply within a day.
+          </p>
+
+          <div className="mx-auto mt-12 grid max-w-3xl gap-3 sm:grid-cols-3">
+            {[
+              { icon: Mail, label: "hello@prakshali.com", href: "mailto:hello@prakshali.com" },
+              { icon: Linkedin, label: "/in/prakshali-shah", href: "#" },
+              { icon: Github, label: "github.com/prakshali", href: "#" },
+            ].map((c) => (
+              <a
+                key={c.label}
+                href={c.href}
+                className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/30 hover:bg-white/[0.06]"
+              >
+                <span className="flex items-center gap-3 text-sm">
+                  <c.icon className="h-4 w-4" /> {c.label}
+                </span>
+                <ArrowUpRight className="h-4 w-4 text-muted-foreground transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+              </a>
+            ))}
+          </div>
+        </motion.div>
+      </Section>
+
+      <footer className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 border-t border-white/5 px-6 py-10 text-xs text-muted-foreground sm:flex-row">
+        <p>© 2026 Prakshali Shah. Designed &amp; built with care.</p>
+        <p className="tracking-[0.25em] uppercase">Crafted in Chicago</p>
+      </footer>
     </main>
   );
 }
