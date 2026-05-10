@@ -9,14 +9,9 @@ import {
   Briefcase,
   GraduationCap,
   Wrench,
-  MessageSquare,
   Mail,
   MapPin,
-  Zap,
-  Headphones,
-  Tag,
   Plus,
-  Star,
 } from "lucide-react";
 import heroPortrait from "@/assets/hero-chicago.jpg";
 import portrait from "@/assets/portrait-elegant.jpg";
@@ -752,7 +747,7 @@ function Footer() {
             <p className="mt-1 text-[15px] text-white">Chicago, IL</p>
           </div>
           {[
-            { t: "Navigation", l: ["Home", "About", "Work", "Pricing", "Contact"] },
+            { t: "Navigation", l: ["Home", "About", "Projects", "Experience", "Contact"] },
             { t: "Social", l: ["LinkedIn", "GitHub", "Twitter", "Dribbble"] },
             { t: "Resources", l: ["Resume", "Reading list", "Now", "404"] },
           ].map((c) => (
