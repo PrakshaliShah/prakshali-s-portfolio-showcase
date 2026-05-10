@@ -72,8 +72,8 @@
 @layer base {
   * { border-color: var(--color-border); }
   html, body {
-    background-color: var(--cream);
-    color: var(--ink);
+    background-color: var(--ink);
+    color: var(--cream);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     letter-spacing: -0.01em;
@@ -88,23 +88,64 @@
   .text-ink { color: var(--ink); }
   .bg-cream { background-color: var(--cream); }
   .text-cream { color: var(--cream); }
-  .text-muted { color: var(--mute); }
-  .text-faded { color: oklch(0.16 0.012 80 / 28%); }
+  .text-muted { color: oklch(1 0 0 / 55%); }
+  .text-faded { color: oklch(1 0 0 / 28%); }
   .text-faded-on-dark { color: oklch(1 0 0 / 28%); }
 
-  /* Plus marker (Noora corner crosses) */
-  .plus-mark {
-    position: relative;
+  /* Premium glass surface */
+  .surface-glass {
+    background: oklch(1 0 0 / 3%);
+    border: 1px solid oklch(1 0 0 / 8%);
+    backdrop-filter: blur(12px);
   }
-  .plus-mark::before,
-  .plus-mark::after {
+
+  /* Light-catching gradient border */
+  .premium-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .premium-border::before {
     content: "";
     position: absolute;
-    background: currentColor;
-    opacity: 0.35;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, oklch(1 0 0 / 22%) 0%, oklch(1 0 0 / 3%) 40%, oklch(1 0 0 / 0%) 70%);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
   }
-  .plus-mark::before { left: 50%; top: 0; width: 1px; height: 12px; transform: translateX(-50%); }
-  .plus-mark::after  { top: 50%; left: 0; height: 1px; width: 12px;  transform: translateY(-50%); }
+
+  /* Cinematic red light leak background accent */
+  .light-leak {
+    position: relative;
+    overflow: hidden;
+  }
+  .light-leak::before {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto auto;
+    width: 60%;
+    height: 70%;
+    background: radial-gradient(closest-side, oklch(0.62 0.22 35 / 22%), transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .light-leak::after {
+    content: "";
+    position: absolute;
+    inset: auto auto -20% -10%;
+    width: 50%;
+    height: 60%;
+    background: radial-gradient(closest-side, oklch(0.55 0.18 30 / 18%), transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 0;
+  }
 
   /* Subtle dotted divider */
   .dotted-row {

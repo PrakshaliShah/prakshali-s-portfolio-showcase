@@ -76,25 +76,25 @@ function Section({
   id,
   eyebrow,
   icon,
-  dark = false,
+  light = false,
   children,
   className = "",
 }: {
   id?: string;
   eyebrow?: string;
   icon?: React.ElementType;
-  dark?: boolean;
+  light?: boolean;
   children: React.ReactNode;
   className?: string;
 }) {
   return (
     <section
       id={id}
-      className={`relative ${dark ? "bg-ink text-cream" : "bg-cream text-ink"} ${className}`}
+      className={`relative light-leak ${light ? "bg-cream text-ink" : "bg-ink text-cream"} ${className}`}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-24 sm:py-32 lg:grid-cols-[200px_1fr]">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-24 sm:py-32 lg:grid-cols-[200px_1fr]">
         <div className="lg:pt-2">
-          {eyebrow && icon && <Eyebrow icon={icon} label={eyebrow} onDark={dark} />}
+          {eyebrow && icon && <Eyebrow icon={icon} label={eyebrow} onDark={!light} />}
         </div>
         <div className="relative">{children}</div>
       </div>
@@ -106,8 +106,8 @@ function Section({
 
 function Index() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-cream text-ink">
-      {/* HERO — dark cinematic */}
+    <main className="relative min-h-screen overflow-x-hidden bg-ink text-cream">
+{/* HERO — dark cinematic */}
       <section
         id="top"
         className="relative isolate min-h-[100svh] overflow-hidden bg-ink text-cream"
@@ -237,13 +237,13 @@ function Index() {
               name: "Transit Safe: CTA",
               tags: ["Python", "FastAPI"],
               desc: "Real-time safety scoring for Chicago Transit Authority routes.",
-              tone: "from-rose-200 to-orange-100",
+              tone: "from-rose-500/40 via-orange-500/20 to-transparent",
             },
             {
               name: "Openly",
               tags: ["AI Startup", "Product"],
               desc: "Founding analytics + product hire. Activation experiments that 2.4×'d signups.",
-              tone: "from-amber-100 to-rose-100",
+              tone: "from-amber-500/30 via-rose-500/20 to-transparent",
             },
           ].map((p, i) => (
             <motion.a
@@ -254,33 +254,33 @@ function Index() {
               whileInView="show"
               viewport={{ once: true, margin: "-60px" }}
               variants={fadeUp}
-              className="group relative overflow-hidden rounded-3xl border border-black/8 bg-white p-6 transition hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.25)]"
+              className="group surface-glass premium-border relative overflow-hidden rounded-3xl p-6 transition hover:-translate-y-1 hover:shadow-[0_30px_80px_-30px_rgba(228,80,40,0.35)]"
             >
               <div className="flex items-center gap-2">
                 {p.tags.map((t) => (
                   <span
                     key={t}
-                    className="rounded-md bg-ink/5 px-2 py-1 text-[11px] font-medium text-ink/70"
+                    className="rounded-md bg-white/5 px-2 py-1 text-[11px] font-medium text-white/70"
                   >
                     {t}
                   </span>
                 ))}
-                <ArrowUpRight className="ml-auto h-5 w-5 text-ink/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-flame" />
+                <ArrowUpRight className="ml-auto h-5 w-5 text-white/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-flame" />
               </div>
               <div
-                className={`mt-5 aspect-[16/10] w-full rounded-2xl bg-gradient-to-br ${p.tone} relative overflow-hidden`}
+                className={`mt-5 aspect-[16/10] w-full rounded-2xl bg-gradient-to-br ${p.tone} relative overflow-hidden border border-white/10`}
               >
                 <div className="absolute inset-0 grid place-items-center">
-                  <span className="font-display text-3xl font-semibold text-ink/70">
+                  <span className="font-display text-3xl font-semibold text-white/80">
                     {p.name.split(":")[0]}
                   </span>
                 </div>
               </div>
               <div className="mt-5">
-                <h3 className="font-display text-[22px] font-semibold leading-tight">
+                <h3 className="font-display text-[22px] font-semibold leading-tight text-white">
                   {p.name}
                 </h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-muted">{p.desc}</p>
+                <p className="mt-2 text-[14px] leading-relaxed text-white/60">{p.desc}</p>
               </div>
             </motion.a>
           ))}
@@ -288,7 +288,7 @@ function Index() {
       </Section>
 
       {/* ABOUT (dark band) */}
-      <Section id="about" eyebrow="About" icon={User} dark>
+      <Section id="about" eyebrow="About" icon={User}>
         <motion.h2
           initial="hidden"
           whileInView="show"
@@ -354,7 +354,7 @@ function Index() {
           Where I've worked.
         </motion.h2>
 
-        <div className="mt-12 border-t border-black/10">
+        <div className="mt-12 border-t border-white/10">
           {[
             {
               company: "Numerator",
@@ -376,18 +376,18 @@ function Index() {
               whileInView="show"
               viewport={{ once: true, margin: "-60px" }}
               variants={fadeUp}
-              className="group grid gap-4 border-b border-black/10 py-8 sm:grid-cols-[1.4fr_2fr_auto] sm:items-baseline sm:gap-10"
+              className="group grid gap-4 border-b border-white/10 py-8 sm:grid-cols-[1.4fr_2fr_auto] sm:items-baseline sm:gap-10"
             >
               <div>
-                <p className="font-display text-[26px] font-semibold leading-tight">
+                <p className="font-display text-[26px] font-semibold leading-tight text-white">
                   {j.company}
                 </p>
-                <p className="mt-1 text-[12px] uppercase tracking-[0.18em] text-muted">
+                <p className="mt-1 text-[12px] uppercase tracking-[0.18em] text-white/50">
                   {j.role}
                 </p>
               </div>
-              <p className="text-[15px] leading-relaxed text-muted">{j.note}</p>
-              <p className="text-[12px] uppercase tracking-[0.18em] text-muted sm:text-right">
+              <p className="text-[15px] leading-relaxed text-white/65">{j.note}</p>
+              <p className="text-[12px] uppercase tracking-[0.18em] text-white/50 sm:text-right">
                 {j.period}
               </p>
             </motion.div>
@@ -423,14 +423,14 @@ function Index() {
               whileInView="show"
               viewport={{ once: true, margin: "-60px" }}
               variants={fadeUp}
-              className="group flex flex-col items-start gap-4 rounded-2xl border border-black/8 bg-white p-5 transition hover:-translate-y-1 hover:border-flame/40"
+              className="group surface-glass premium-border flex flex-col items-start gap-4 rounded-2xl p-5 transition hover:-translate-y-1 hover:shadow-[0_20px_60px_-30px_rgba(228,80,40,0.4)]"
             >
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-ink text-cream font-display text-[15px] font-semibold">
+              <div className="grid h-12 w-12 place-items-center rounded-xl bg-flame text-white font-display text-[15px] font-semibold shadow-[0_10px_30px_-10px_rgba(228,80,40,0.6)]">
                 {s.abbr}
               </div>
               <div>
-                <p className="font-display text-[18px] font-semibold">{s.name}</p>
-                <p className="text-[12px] text-muted">Daily driver</p>
+                <p className="font-display text-[18px] font-semibold text-white">{s.name}</p>
+                <p className="text-[12px] text-white/55">Daily driver</p>
               </div>
             </motion.div>
           ))}
@@ -444,17 +444,17 @@ function Index() {
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
           variants={fadeUp}
-          className="rounded-3xl border border-black/10 bg-white p-8 sm:p-12"
+          className="surface-glass premium-border rounded-3xl p-8 sm:p-12"
         >
           <div className="flex flex-wrap items-start justify-between gap-6">
             <div>
               <p className="text-[12px] uppercase tracking-[0.2em] text-flame">
                 Roosevelt University
               </p>
-              <h3 className="mt-3 font-display text-[32px] font-semibold leading-tight sm:text-[44px]">
+              <h3 className="mt-3 font-display text-[32px] font-semibold leading-tight text-white sm:text-[44px]">
                 M.S. in Business Analytics
               </h3>
-              <p className="mt-2 text-[15px] text-muted">
+              <p className="mt-2 text-[15px] text-white/60">
                 Chicago, IL · Expected May 2026
               </p>
             </div>
@@ -462,7 +462,7 @@ function Index() {
               {["Statistics", "ML", "Data Viz", "Forecasting"].map((t) => (
                 <span
                   key={t}
-                  className="rounded-md bg-ink/5 px-2.5 py-1 text-[11px] font-medium text-ink/70"
+                  className="rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-medium text-white/75"
                 >
                   {t}
                 </span>
@@ -493,20 +493,20 @@ function Index() {
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
             variants={fadeUp}
-            className="rounded-3xl border border-black/10 bg-white p-8"
+            className="surface-glass premium-border rounded-3xl p-8"
           >
             <div className="flex gap-0.5 text-flame">{"★★★★★"}</div>
-            <p className="mt-6 font-display text-[20px] leading-snug">
+            <p className="mt-6 font-display text-[20px] leading-snug text-white/90">
               "Prakshali turns ambiguous data questions into crisp, decision-ready
               answers — and ships the dashboard to prove it."
             </p>
             <div className="mt-6 flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-full bg-ink text-cream text-[12px] font-semibold">
+              <div className="grid h-10 w-10 place-items-center rounded-full bg-flame text-white text-[12px] font-semibold">
                 NM
               </div>
               <div>
-                <p className="text-[14px] font-medium">Lead, Numerator</p>
-                <p className="text-[12px] text-muted">Consumer Insights team</p>
+                <p className="text-[14px] font-medium text-white">Lead, Numerator</p>
+                <p className="text-[12px] text-white/55">Consumer Insights team</p>
               </div>
             </div>
           </motion.div>
@@ -517,12 +517,12 @@ function Index() {
             viewport={{ once: true, margin: "-60px" }}
             variants={fadeUp}
             custom={1}
-            className="rounded-3xl border border-black/10 bg-gradient-to-br from-rose-100 to-amber-100 p-8"
+            className="premium-border relative overflow-hidden rounded-3xl border border-flame/30 bg-gradient-to-br from-flame/30 via-rose-700/15 to-transparent p-8"
           >
             <p className="text-[12px] uppercase tracking-[0.2em] text-flame">
               Currently
             </p>
-            <ul className="mt-6 space-y-4 font-display text-[20px] font-medium leading-snug">
+            <ul className="mt-6 space-y-4 font-display text-[20px] font-medium leading-snug text-white">
               <li>→ Wrapping Transit Safe v2 (route-level risk)</li>
               <li>→ Reading <em>Storytelling with Data</em></li>
               <li>→ Listening to Bonobo · Fragments</li>
