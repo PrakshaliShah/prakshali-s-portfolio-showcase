@@ -76,25 +76,25 @@ function Section({
   id,
   eyebrow,
   icon,
-  dark = false,
+  light = false,
   children,
   className = "",
 }: {
   id?: string;
   eyebrow?: string;
   icon?: React.ElementType;
-  dark?: boolean;
+  light?: boolean;
   children: React.ReactNode;
   className?: string;
 }) {
   return (
     <section
       id={id}
-      className={`relative ${dark ? "bg-ink text-cream" : "bg-cream text-ink"} ${className}`}
+      className={`relative light-leak ${light ? "bg-cream text-ink" : "bg-ink text-cream"} ${className}`}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-24 sm:py-32 lg:grid-cols-[200px_1fr]">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-24 sm:py-32 lg:grid-cols-[200px_1fr]">
         <div className="lg:pt-2">
-          {eyebrow && icon && <Eyebrow icon={icon} label={eyebrow} onDark={dark} />}
+          {eyebrow && icon && <Eyebrow icon={icon} label={eyebrow} onDark={!light} />}
         </div>
         <div className="relative">{children}</div>
       </div>
@@ -106,8 +106,8 @@ function Section({
 
 function Index() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-cream text-ink">
-      {/* HERO — dark cinematic */}
+    <main className="relative min-h-screen overflow-x-hidden bg-ink text-cream">
+{/* HERO — dark cinematic */}
       <section
         id="top"
         className="relative isolate min-h-[100svh] overflow-hidden bg-ink text-cream"
