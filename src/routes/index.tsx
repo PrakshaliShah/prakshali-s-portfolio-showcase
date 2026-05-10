@@ -278,7 +278,7 @@ function About() {
         href="#contact"
         className="mt-8 inline-flex items-center gap-2 text-flame hover:underline"
       >
-        More about me <ArrowRight className="h-4 w-4" />
+        Get in touch <ArrowRight className="h-4 w-4" />
       </a>
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2">
@@ -289,24 +289,19 @@ function About() {
           variants={fadeUp}
           className="surface-glass premium-border relative overflow-hidden rounded-3xl p-8"
         >
-          <div className="flex gap-0.5 text-flame">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="h-4 w-4 fill-current" />
-            ))}
-          </div>
-          <p className="mt-6 font-display text-[20px] leading-snug text-white/90">
-            "Working with Prakshali felt effortless. The dashboard wasn't just
-            shipped — <em className="text-white">it was a tool the team actually used.</em>"
+          <p className="text-[12px] uppercase tracking-[0.2em] text-flame">
+            Hello —
           </p>
-          <div className="mt-8 flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-full bg-flame text-white text-[12px] font-semibold">
-              AM
-            </div>
-            <div>
-              <p className="text-[14px] font-medium text-white">Alice Miller</p>
-              <p className="text-[12px] text-white/55">Insights Lead, Numerator</p>
-            </div>
-          </div>
+          <p className="mt-6 font-display text-[22px] leading-snug text-white/90">
+            I'm <span className="text-white">Prakshali</span>, an M.S. Business
+            Analytics student in Chicago. I love the moment a tangled dataset
+            becomes a clear story — and the chart, dashboard, or tiny app that
+            carries it.
+          </p>
+          <p className="mt-6 text-[15px] leading-relaxed text-white/65">
+            Currently exploring product analytics, machine learning and the
+            craft of turning research into something you can actually click.
+          </p>
         </motion.div>
 
         <motion.div
