@@ -11,7 +11,7 @@ import {
   MessageSquare,
   Mail,
   MapPin,
-  Sparkles,
+  
 } from "lucide-react";
 import portrait from "@/assets/prakshali.jpg";
 import heroCinematic from "@/assets/hero-cinematic.jpg";
