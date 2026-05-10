@@ -18,12 +18,9 @@ import {
   Headphones,
   Tag,
   Plus,
-  Minus,
-  Play,
-  Star,
 } from "lucide-react";
-import heroPortrait from "@/assets/hero-portrait.jpg";
-import portrait from "@/assets/prakshali.jpg";
+import heroPortrait from "@/assets/hero-chicago.jpg";
+import portrait from "@/assets/portrait-elegant.jpg";
 import projectTransit from "@/assets/project-transit.jpg";
 import projectOpenly from "@/assets/project-openly.jpg";
 import projectNumerator from "@/assets/project-numerator.jpg";
@@ -135,14 +132,11 @@ function Index() {
       <Methodology />
       <Services />
       <Pricing />
-      <Showreel />
       <Experience />
       <Skills />
       <Education />
-      <Testimonials />
       <Stats />
       <CTA />
-      <FAQ />
       <Contact />
       <Footer />
     </main>
@@ -162,7 +156,7 @@ function Hero() {
         initial={{ scale: 1.08, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.85 }}
         transition={{ duration: 1.6, ease: "easeOut" }}
-        className="absolute inset-0 h-full w-full object-cover object-[60%_center]"
+        className="absolute inset-0 h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/90" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(228,80,40,0.32),transparent_55%)]" />
@@ -766,12 +760,6 @@ function Experience() {
       role: "Graduate Assistant",
       period: "2024 — Now",
       note: "TA for analytics & data viz coursework; supporting faculty research on forecasting.",
-    },
-    {
-      company: "Openly (Founding)",
-      role: "Product Analytics",
-      period: "2023 — 2024",
-      note: "Built the activation funnel from zero. Ran 14 experiments; 2.4× signup conversion.",
     },
   ];
 
