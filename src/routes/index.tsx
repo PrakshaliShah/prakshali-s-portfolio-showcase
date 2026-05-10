@@ -659,8 +659,8 @@ function Contact() {
             Let's build <br /> something good.
           </motion.h2>
           <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-white/65">
-            Reach out today and you'll get a clear plan, honest advice, and a
-            partner who cares about the outcome as much as you do.
+            Whether it's a role, a collaboration, or a question about a project —
+            my inbox is open.
           </p>
 
           <motion.form
@@ -675,7 +675,7 @@ function Contact() {
             {[
               { label: "Name *", placeholder: "Jane Foster" },
               { label: "E-mail *", placeholder: "jane@email.com" },
-              { label: "What can I help with? *", placeholder: "Tell me more" },
+              { label: "Message *", placeholder: "Say hi 👋" },
             ].map((f) => (
               <div key={f.label} className="border-b border-white/15 pb-2">
                 <label className="block text-[12px] uppercase tracking-[0.18em] text-white/55">
