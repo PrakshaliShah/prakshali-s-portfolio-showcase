@@ -128,12 +128,10 @@ function Index() {
       <Marquee />
       <About />
       <Work />
-      <Pricing />
       <Experience />
       <Skills />
       <Education />
       <Stats />
-      <CTA />
       <Contact />
       <Footer />
     </main>
@@ -194,9 +192,8 @@ function Hero() {
         >
           {[
             { l: "About", h: "#about" },
-            { l: "Work", h: "#work" },
-            { l: "Services", h: "#services" },
-            { l: "Pricing", h: "#pricing" },
+            { l: "Projects", h: "#work" },
+            { l: "Experience", h: "#experience" },
             { l: "Contact", h: "#contact" },
           ].map((n) => (
             <a
@@ -219,17 +216,17 @@ function Hero() {
           className="max-w-xl"
         >
           <h1 className="font-display text-[32px] font-semibold leading-[1.1] tracking-tight text-white sm:text-[44px]">
-            Not just another analyst. <br />
-            Not just another portfolio. <br />
+            M.S. Business Analytics. <br />
+            Builder, learner, storyteller. <br />
             <span className="text-white/55">
-              Prakshali turns messy data into products people actually use.
+              Turning messy data into projects people actually use.
             </span>
           </h1>
           <a
-            href="#contact"
+            href="#work"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[14px] font-medium text-ink transition hover:bg-white/90 hover:gap-3"
           >
-            Book a meeting
+            View my projects
             <ArrowRight className="h-4 w-4" />
           </a>
         </motion.div>
