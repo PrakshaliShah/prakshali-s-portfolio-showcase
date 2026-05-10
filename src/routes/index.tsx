@@ -12,8 +12,6 @@ import {
   MessageSquare,
   Mail,
   MapPin,
-  Sparkles,
-  Compass,
   Zap,
   Headphones,
   Tag,
@@ -130,8 +128,6 @@ function Index() {
       <Marquee />
       <About />
       <Work />
-      <Methodology />
-      <Services />
       <Pricing />
       <Experience />
       <Skills />
