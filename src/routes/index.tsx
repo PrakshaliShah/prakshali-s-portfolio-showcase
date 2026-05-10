@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import {
   ArrowUpRight,
   Mail,
@@ -34,12 +34,12 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   show: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: i * 0.06, ease: [0.21, 0.47, 0.32, 0.98] },
+    transition: { duration: 0.7, delay: i * 0.06, ease: [0.21, 0.47, 0.32, 0.98] as [number, number, number, number] },
   }),
 };
 
