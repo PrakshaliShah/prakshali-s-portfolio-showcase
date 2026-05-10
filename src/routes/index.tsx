@@ -18,6 +18,7 @@ import {
   Headphones,
   Tag,
   Plus,
+  Star,
 } from "lucide-react";
 import heroPortrait from "@/assets/hero-chicago.jpg";
 import portrait from "@/assets/portrait-elegant.jpg";
