@@ -70,21 +70,6 @@ function Eyebrow({
   );
 }
 
-function PlusCorners({ color = "ink" }: { color?: "ink" | "cream" }) {
-  const c =
-    color === "cream"
-      ? "text-white/25"
-      : "text-black/25";
-  return (
-    <>
-      <Plus className={`pointer-events-none absolute -left-2 -top-2 h-4 w-4 ${c}`} strokeWidth={1.5} />
-      <Plus className={`pointer-events-none absolute -right-2 -top-2 h-4 w-4 ${c}`} strokeWidth={1.5} />
-      <Plus className={`pointer-events-none absolute -bottom-2 -left-2 h-4 w-4 ${c}`} strokeWidth={1.5} />
-      <Plus className={`pointer-events-none absolute -bottom-2 -right-2 h-4 w-4 ${c}`} strokeWidth={1.5} />
-    </>
-  );
-}
-
 function Section({
   id,
   eyebrow,
