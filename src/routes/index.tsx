@@ -340,33 +340,39 @@ function Work() {
     {
       name: "Transit Safe",
       tag: "Data + Product",
-      desc: "Real-time safety scoring for Chicago Transit routes.",
+      year: "2025",
+      desc: "Real-time safety scoring for Chicago Transit routes, blending CTA arrival data with crime feeds.",
+      stack: ["Python", "FastAPI", "React", "PostGIS"],
       img: projectTransit,
     },
     {
-      name: "Openly",
-      tag: "AI Startup",
-      desc: "Founding analytics hire. Activation experiments that 2.4×'d signups.",
-      img: projectOpenly,
+      name: "Numerator Insights",
+      tag: "Consumer Analytics",
+      year: "2024",
+      desc: "Behavioral signals across millions of CPG transactions for Fortune-500 brand teams.",
+      stack: ["SQL", "Tableau", "dbt", "Snowflake"],
+      img: projectNumerator,
     },
     {
-      name: "Numerator",
-      tag: "Consumer Insights",
-      desc: "Behavioral signals across millions of CPG transactions.",
-      img: projectNumerator,
+      name: "Openly",
+      tag: "Product Analytics",
+      year: "2023",
+      desc: "Activation funnel from zero — 14 experiments that 2.4×'d signup conversion.",
+      stack: ["Python", "Mixpanel", "A/B Testing"],
+      img: projectOpenly,
     },
   ];
 
   return (
-    <Section id="work" eyebrow="Work" icon={Folder}>
+    <Section id="work" eyebrow="Projects" icon={Folder}>
       <motion.h2
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
         variants={fadeUp}
-        className="font-display text-[56px] font-semibold leading-[0.98] tracking-tight sm:text-[112px]"
+        className="font-display text-[64px] font-semibold leading-[0.95] tracking-tight sm:text-[128px]"
       >
-        Case Studies
+        Projects.
       </motion.h2>
       <motion.p
         initial="hidden"
@@ -374,25 +380,13 @@ function Work() {
         viewport={{ once: true, margin: "-80px" }}
         variants={fadeUp}
         custom={1}
-        className="mt-4 max-w-xl text-[17px] text-muted"
+        className="mt-6 max-w-xl text-[17px] text-muted"
       >
-        Featured work between ©2024–25. A short list of things I've shipped where
-        data, design and engineering had to meet in the middle.
+        A short list of things I've built where data, design and a little
+        engineering had to meet in the middle.
       </motion.p>
 
-      <motion.a
-        href="#contact"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={fadeUp}
-        custom={2}
-        className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[14px] font-medium text-ink transition hover:bg-white/90"
-      >
-        Discover all projects
-      </motion.a>
-
-      <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-20 space-y-10">
         {projects.map((p, i) => (
           <motion.a
             key={p.name}
@@ -400,30 +394,66 @@ function Work() {
             custom={i}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
-            whileHover={{ y: -6 }}
-            className="group surface-glass premium-border relative overflow-hidden rounded-3xl p-3 transition hover:shadow-[0_30px_80px_-30px_rgba(228,80,40,0.45)]"
+            whileHover={{ scale: 1.015, y: -8 }}
+            transition={{ type: "spring", stiffness: 220, damping: 22 }}
+            className={`group surface-glass premium-border relative grid overflow-hidden rounded-[28px] p-4 transition-shadow duration-500 hover:shadow-[0_50px_120px_-30px_rgba(228,80,40,0.5)] sm:p-5 lg:grid-cols-[1.4fr_1fr] lg:gap-6 ${
+              i % 2 === 1 ? "lg:[direction:rtl]" : ""
+            }`}
           >
-            <div className="relative overflow-hidden rounded-2xl">
-              <img
+            <div className="relative overflow-hidden rounded-[22px] [direction:ltr]">
+              <motion.img
                 src={p.img}
                 alt={p.name}
                 loading="lazy"
-                className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-105"
+                className="aspect-[16/10] w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
               />
-              <span className="absolute left-3 top-3 rounded-md bg-black/55 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-md">
-                {p.tag}
-              </span>
-            </div>
-            <div className="flex items-center justify-between px-2 pb-2 pt-4">
-              <div>
-                <p className="font-display text-[20px] font-semibold text-white">
-                  {p.name}
-                </p>
-                <p className="mt-1 text-[13px] text-white/60">{p.desc}</p>
+              {/* gradient & shine overlays */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/60 via-black/0 to-flame/0 opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
+              <div className="pointer-events-none absolute -inset-x-1/2 top-0 h-full -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-[1100ms] ease-out group-hover:translate-x-[160%]" />
+
+              <div className="absolute left-4 top-4 flex items-center gap-2">
+                <span className="rounded-full bg-black/55 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white backdrop-blur-md">
+                  {p.tag}
+                </span>
+                <span className="rounded-full bg-flame/80 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+                  {p.year}
+                </span>
               </div>
-              <ArrowUpRight className="h-5 w-5 shrink-0 text-white/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-flame" />
+              <div className="absolute bottom-4 right-4 grid h-12 w-12 place-items-center rounded-full bg-white/95 text-ink opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 sm:translate-y-3">
+                <ArrowUpRight className="h-5 w-5" />
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between p-4 [direction:ltr] sm:p-6">
+              <div>
+                <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-flame">
+                  ({String(i + 1).padStart(2, "0")}) — {p.year}
+                </p>
+                <h3 className="mt-4 font-display text-[34px] font-semibold leading-[1.05] text-white transition-colors duration-300 group-hover:text-flame sm:text-[44px]">
+                  {p.name}
+                </h3>
+                <p className="mt-4 text-[16px] leading-relaxed text-white/70">
+                  {p.desc}
+                </p>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-2">
+                {p.stack.map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-full border border-white/15 bg-white/[0.04] px-3 py-1 text-[12px] text-white/80"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-8 inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.2em] text-white/55 transition group-hover:text-white">
+                View case study
+                <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+              </div>
             </div>
           </motion.a>
         ))}
