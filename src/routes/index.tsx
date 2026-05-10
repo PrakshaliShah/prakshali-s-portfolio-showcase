@@ -288,7 +288,7 @@ function Index() {
       </Section>
 
       {/* ABOUT (dark band) */}
-      <Section id="about" eyebrow="About" icon={User} dark>
+      <Section id="about" eyebrow="About" icon={User}>
         <motion.h2
           initial="hidden"
           whileInView="show"
