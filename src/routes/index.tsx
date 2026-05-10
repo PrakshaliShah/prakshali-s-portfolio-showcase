@@ -12,7 +12,6 @@ import {
   Mail,
   MapPin,
   Sparkles,
-  Plus,
 } from "lucide-react";
 import portrait from "@/assets/prakshali.jpg";
 
