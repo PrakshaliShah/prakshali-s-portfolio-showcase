@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Prakshali Shah Portfolio" },
+      { name: "description", content: "A premium, interactive personal portfolio showcasing skills, projects, and experience with a dynamic Bento grid layout." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Prakshali Shah Portfolio" },
+      { property: "og:description", content: "A premium, interactive personal portfolio showcasing skills, projects, and experience with a dynamic Bento grid layout." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Prakshali Shah Portfolio" },
+      { name: "twitter:description", content: "A premium, interactive personal portfolio showcasing skills, projects, and experience with a dynamic Bento grid layout." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c6229256-660c-432c-8add-aa815a5714ae/id-preview-e279ec83--e1524a3d-d4d2-4206-840f-ddf7ac591a7c.lovable.app-1778444794523.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c6229256-660c-432c-8add-aa815a5714ae/id-preview-e279ec83--e1524a3d-d4d2-4206-840f-ddf7ac591a7c.lovable.app-1778444794523.png" },
     ],
     links: [
       {
