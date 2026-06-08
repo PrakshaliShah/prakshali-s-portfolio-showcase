@@ -153,8 +153,6 @@ function Hero() {
         transition={{ duration: 1.6, ease: "easeOut" }}
         className="absolute inset-0 h-full w-full object-cover object-[center_20%]"
       />
-      {/* removed duplicated line */}
-      />
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/75" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(228,80,40,0.32),transparent_55%)]" />
 
