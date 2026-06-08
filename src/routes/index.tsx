@@ -267,14 +267,14 @@ function About() {
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
         variants={fadeUp}
-        className="font-display text-[40px] font-semibold leading-[1.05] tracking-tight sm:text-[64px]"
+        className="font-display text-[40px] font-semibold leading-[1.05] tracking-tight text-white sm:text-[64px]"
       >
-        A builder who thinks in data.{" "}
-        <span className="text-faded">
-          Comfortable in a notebook, a Figma file, or a stand-up — wherever the
-          decision has to get made.
+        A data professional who speaks the language of business.{" "}
+        <span className="text-white">
+          Comfortable querying massive consumer panel datasets, tracking category dynamics, or presenting actionable recommendations to stakeholders.
         </span>
       </motion.h2>
+
 
       <a
         href="#contact"
