@@ -347,7 +347,7 @@ function Work() {
     {
       name: "Lumina AI",
       tag: "AI · FinTech",
-      year: "2025",
+      year: "2026",
       desc: "An AI-driven financial optimization platform that aggregates external financial APIs and runs a matching algorithm over complex variable reward structures to maximize credit card returns across simulated spending profiles.",
       stack: ["Python", "Data Pipelines", "Financial APIs", "ML"],
       img: projectLumina,
