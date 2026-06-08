@@ -587,7 +587,7 @@ function Experience() {
 function Skills() {
   const stack = [
     { name: "SQL", abbr: "SQL", sub: "Data Extraction & Structuring" },
-    { name: "Power BI", abbr: "BI", sub: "Dashboards & Scorecards — requested by Kraft Heinz and Essity" },
+    { name: "Power BI", abbr: "BI", sub: "Dashboards & Scorecards" },
     { name: "Numerator", abbr: "Nu", sub: "Syndicated Panel Data (Circana / Nielsen)" },
     { name: "Advanced Excel", abbr: "Ex", sub: "VBA Macros & Modeling" },
     { name: "Python", abbr: "Py", sub: "Pipeline Automation & ML" },
@@ -698,7 +698,7 @@ function Stats() {
   ];
   return (
     <section className="border-y border-white/10 bg-ink">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-20 sm:grid-cols-3">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-20 sm:grid-cols-3 text-center">
         {stats.map((s, i) => (
           <motion.div
             key={s.l}
@@ -707,6 +707,7 @@ function Stats() {
             whileInView="show"
             viewport={{ once: true }}
             variants={fadeUp}
+            className="flex flex-col items-center"
           >
             <p className="font-display text-[64px] font-semibold leading-none text-white sm:text-[88px]">
               {s.v}
