@@ -437,7 +437,7 @@ function Work() {
                 loading="lazy"
                 className="aspect-[16/10] w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/60 via-black/0 to-flame/0 opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/0 to-black/0 transition-opacity duration-500" />
               <div className="pointer-events-none absolute -inset-x-1/2 top-0 h-full -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-[1100ms] ease-out group-hover:translate-x-[160%]" />
 
               <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
@@ -453,7 +453,7 @@ function Work() {
                   </span>
                 )}
               </div>
-              <div className="absolute bottom-4 right-4 grid h-12 w-12 place-items-center rounded-full bg-white/95 text-ink opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 sm:translate-y-3">
+              <div className="absolute bottom-4 right-4 grid h-12 w-12 place-items-center rounded-full bg-white/95 text-ink shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:bg-flame group-hover:text-white">
                 <ArrowUpRight className="h-5 w-5" />
               </div>
             </div>
