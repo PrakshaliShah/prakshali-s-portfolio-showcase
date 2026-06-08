@@ -218,11 +218,12 @@ function Hero() {
         >
           <h1 className="font-display text-[32px] font-semibold leading-[1.1] tracking-tight text-white sm:text-[44px]">
             M.S. Business Analytics. <br />
-            Builder, learner, storyteller. <br />
-            <span className="text-white/55">
-              Turning messy data into projects people actually use.
+            Analyst, strategist, storyteller. <br />
+            <span className="text-white">
+              Turning complex consumer data into actionable category growth.
             </span>
           </h1>
+
           <a
             href="#work"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[14px] font-medium text-ink transition hover:bg-white/90 hover:gap-3"
