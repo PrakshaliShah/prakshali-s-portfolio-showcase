@@ -14,7 +14,8 @@ import {
   Plus,
 } from "lucide-react";
 import heroPortraitAsset from "@/assets/hero-flowers.jpeg.asset.json";
-const heroPortrait = "https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?auto=format&fit=crop&w=2400&q=80";
+import heroGradAsset from "@/assets/hero-grad-chicago.jpeg.asset.json";
+const heroPortrait = heroGradAsset.url;
 const portrait = heroPortraitAsset.url;
 import projectTransitSafe from "@/assets/project-transit-safe.jpg";
 import projectLumina from "@/assets/project-lumina.jpg";
