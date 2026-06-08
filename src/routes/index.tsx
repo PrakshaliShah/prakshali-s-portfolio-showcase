@@ -357,7 +357,7 @@ function Work() {
     {
       name: "TradeSpend AI Optimizer",
       tag: "Retail Analytics",
-      year: "2025",
+      year: "2026",
       desc: "An interactive Streamlit app that models trade-promotion ROI for CPG and grocery retail — scaling cross-category basket affinity and category dynamics into actionable investment models.",
       stack: ["Streamlit", "Python", "Pandas", "ROI Modeling"],
       img: projectTradespend,
