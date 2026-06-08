@@ -586,11 +586,11 @@ function Experience() {
 /* ===================== SKILLS ===================== */
 function Skills() {
   const stack = [
-    { name: "Python", abbr: "Py" },
-    { name: "SQL", abbr: "SQL" },
-    { name: "Tableau", abbr: "Tb" },
-    { name: "Power BI", abbr: "BI" },
-    { name: "Docker", abbr: "Dk" },
+    { name: "SQL", abbr: "SQL", sub: "Data Extraction & Structuring" },
+    { name: "Power BI", abbr: "BI", sub: "Dashboards & Scorecards — requested by Kraft Heinz and Essity" },
+    { name: "Numerator", abbr: "Nu", sub: "Syndicated Panel Data (Circana / Nielsen)" },
+    { name: "Advanced Excel", abbr: "Ex", sub: "VBA Macros & Modeling" },
+    { name: "Python", abbr: "Py", sub: "Pipeline Automation & ML" },
   ];
   return (
     <Section eyebrow="Toolbox" icon={Wrench}>
@@ -622,7 +622,7 @@ function Skills() {
               <p className="font-display text-[18px] font-semibold text-white">
                 {s.name}
               </p>
-              <p className="text-[12px] text-white/55">Daily driver</p>
+              <p className="text-[12px] leading-snug text-white/55">{s.sub}</p>
             </div>
           </motion.div>
         ))}
