@@ -633,40 +633,58 @@ function Skills() {
 
 /* ===================== EDUCATION ===================== */
 function Education() {
+  const degrees = [
+    {
+      school: "Roosevelt University",
+      title: "M.S. in Business Analytics",
+      sub: "Chicago, IL · Graduated May 2026 · 4.0 GPA",
+      tags: ["Forecasting", "Data Viz", "Predictive Analytics", "Market Intelligence"],
+    },
+    {
+      school: "Parul University",
+      title: "B.Tech in Computer Science & Engineering",
+      sub: "India · April 2020 · 8.0/10.0 GPA",
+      tags: ["Data Pipelines", "SQL", "Python", "System Architecture"],
+    },
+  ];
   return (
     <Section eyebrow="Education" icon={GraduationCap}>
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
-        variants={fadeUp}
-        className="surface-glass premium-border relative overflow-hidden rounded-3xl p-8 sm:p-12"
-      >
-        <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-flame/30 blur-3xl" />
-        <div className="relative flex flex-wrap items-start justify-between gap-6">
-          <div>
-            <p className="text-[12px] uppercase tracking-[0.2em] text-flame">
-              Roosevelt University
-            </p>
-            <h3 className="mt-3 font-display text-[32px] font-semibold leading-tight text-white sm:text-[44px]">
-              M.S. in Business Analytics
-            </h3>
-            <p className="mt-2 text-[15px] text-white/60">
-              Chicago, IL · Expected May 2026
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {["Statistics", "ML", "Data Viz", "Forecasting"].map((t) => (
-              <span
-                key={t}
-                className="rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-medium text-white/75"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-      </motion.div>
+      <div className="grid gap-6">
+        {degrees.map((d, i) => (
+          <motion.div
+            key={d.title}
+            custom={i}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="surface-glass premium-border relative overflow-hidden rounded-3xl p-8 sm:p-12"
+          >
+            <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-flame/30 blur-3xl" />
+            <div className="relative flex flex-wrap items-start justify-between gap-6">
+              <div>
+                <p className="text-[12px] uppercase tracking-[0.2em] text-flame">
+                  {d.school}
+                </p>
+                <h3 className="mt-3 font-display text-[28px] font-semibold leading-tight text-white sm:text-[40px]">
+                  {d.title}
+                </h3>
+                <p className="mt-2 text-[15px] text-white/60">{d.sub}</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {d.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-medium text-white/75"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </Section>
   );
 }
