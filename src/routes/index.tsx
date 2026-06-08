@@ -522,16 +522,22 @@ function Work() {
 function Experience() {
   const jobs = [
     {
-      company: "Numerator",
-      role: "Consumer Insights · Analyst",
-      period: "2024 — 2025",
-      note: "Surfaced behavioral signals across millions of CPG transactions for Fortune-500 brand teams.",
-    },
-    {
       company: "Roosevelt University",
       role: "Graduate Assistant",
       period: "2025 — 2026",
-      note: "TA for analytics & data viz coursework; supporting faculty research on forecasting.",
+      note: "Translated complex academic research into interactive data visualizations for 500+ university stakeholders and instructed hands-on analytics workshops.",
+    },
+    {
+      company: "Numerator",
+      role: "Client Service Associate I & II",
+      period: "2022 — 2024",
+      note: "Guided category management strategies for a $10M+ CPG portfolio and designed dynamic Power BI dashboards using syndicated panel data.",
+    },
+    {
+      company: "Numerator",
+      role: "Data Analyst & Data Quality Lead",
+      period: "2020 — 2022",
+      note: "Guaranteed reporting precision across massive consumer datasets by deploying automated Python anomaly detection algorithms and optimizing SQL pipelines.",
     },
   ];
 
