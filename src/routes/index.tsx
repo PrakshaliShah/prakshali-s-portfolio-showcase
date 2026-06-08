@@ -337,27 +337,55 @@ function Work() {
   const projects = [
     {
       name: "Transit Safe",
-      tag: "Data + Product",
+      tag: "Real-Time · Web App",
       year: "2025",
-      desc: "Real-time safety scoring for Chicago Transit routes, blending CTA arrival data with crime feeds.",
-      stack: ["Python", "FastAPI", "React", "PostGIS"],
-      img: projectTransit,
+      desc: "A real-time web app that tracks live Chicago Transit Authority (CTA) train locations and API data streams — replacing static schedules with low-latency, actionable arrival insights for commuters.",
+      stack: ["Python", "FastAPI", "CTA API", "Render"],
+      img: projectTransitSafe,
+      href: "https://transit-safe-cta.onrender.com/",
     },
     {
-      name: "Numerator Insights",
-      tag: "Consumer Analytics",
-      year: "2024",
-      desc: "Behavioral signals across millions of CPG transactions for Fortune-500 brand teams.",
-      stack: ["SQL", "Tableau", "dbt", "Snowflake"],
-      img: projectNumerator,
+      name: "Lumina AI",
+      tag: "AI · FinTech",
+      year: "2025",
+      desc: "An AI-driven financial optimization platform that aggregates external financial APIs and runs a matching algorithm over complex variable reward structures to maximize credit card returns across simulated spending profiles.",
+      stack: ["Python", "Data Pipelines", "Financial APIs", "ML"],
+      img: projectLumina,
+      href: "https://lumina-ai.lovable.app",
+      wip: true,
     },
     {
-      name: "Openly",
-      tag: "Product Analytics",
-      year: "2023",
-      desc: "Activation funnel from zero — 14 experiments that 2.4×'d signup conversion.",
-      stack: ["Python", "Mixpanel", "A/B Testing"],
-      img: projectOpenly,
+      name: "TradeSpend AI Optimizer",
+      tag: "Retail Analytics",
+      year: "2025",
+      desc: "An interactive Streamlit app that models trade-promotion ROI for CPG and grocery retail — scaling cross-category basket affinity and category dynamics into actionable investment models.",
+      stack: ["Streamlit", "Python", "Pandas", "ROI Modeling"],
+      img: projectTradespend,
+      href: "https://tradespend-ai-optimizer.streamlit.app/",
+    },
+  ];
+
+  const academic = [
+    {
+      name: "MedData Corp — Security Transformation",
+      tag: "Healthcare · Strategy",
+      desc: "A $1.65M security transformation roadmap protecting 10M+ users' PHI — tiered MFA, role-based data minimization, and a break-glass protocol returning 14.5× on risk prevention.",
+      stack: ["HIPAA", "Risk Modeling", "Strategy"],
+      img: projectMeddata,
+    },
+    {
+      name: "Amazon Delivery Data Analysis",
+      tag: "Logistics · EDA",
+      desc: "Exploratory analysis of Amazon delivery operations — uncovering driver, route, and weather patterns that drive on-time performance and last-mile efficiency.",
+      stack: ["Python", "Pandas", "Visualization"],
+      img: projectAmazon,
+    },
+    {
+      name: "Superstore Sales Analytics",
+      tag: "Retail · BI",
+      desc: "End-to-end analytics on the Superstore dataset — segmentation, profitability and category dynamics surfaced through interactive dashboards.",
+      stack: ["Tableau", "SQL", "Excel"],
+      img: projectSuperstore,
     },
   ];
 
@@ -380,15 +408,17 @@ function Work() {
         custom={1}
         className="mt-6 max-w-xl text-[17px] text-muted"
       >
-        A short list of things I've built where data, design and a little
-        engineering had to meet in the middle.
+        Live builds where data, design and a little engineering had to meet in
+        the middle — plus a few academic deep-dives.
       </motion.p>
 
       <div className="mt-20 space-y-10">
         {projects.map((p, i) => (
           <motion.a
             key={p.name}
-            href="#"
+            href={p.href}
+            target="_blank"
+            rel="noreferrer"
             custom={i}
             initial="hidden"
             whileInView="show"
@@ -407,17 +437,21 @@ function Work() {
                 loading="lazy"
                 className="aspect-[16/10] w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
               />
-              {/* gradient & shine overlays */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/60 via-black/0 to-flame/0 opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
               <div className="pointer-events-none absolute -inset-x-1/2 top-0 h-full -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-[1100ms] ease-out group-hover:translate-x-[160%]" />
 
-              <div className="absolute left-4 top-4 flex items-center gap-2">
+              <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
                 <span className="rounded-full bg-black/55 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white backdrop-blur-md">
                   {p.tag}
                 </span>
                 <span className="rounded-full bg-flame/80 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-md">
                   {p.year}
                 </span>
+                {p.wip && (
+                  <span className="rounded-full bg-white/90 px-3 py-1 text-[11px] font-medium text-ink backdrop-blur-md">
+                    Work in progress
+                  </span>
+                )}
               </div>
               <div className="absolute bottom-4 right-4 grid h-12 w-12 place-items-center rounded-full bg-white/95 text-ink opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 sm:translate-y-3">
                 <ArrowUpRight className="h-5 w-5" />
@@ -449,11 +483,74 @@ function Work() {
               </div>
 
               <div className="mt-8 inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.2em] text-white/55 transition group-hover:text-white">
-                View case study
+                Visit project
                 <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
               </div>
             </div>
           </motion.a>
+        ))}
+      </div>
+
+      {/* Academic projects */}
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={fadeUp}
+        className="mt-28 flex items-end justify-between gap-6"
+      >
+        <h3 className="font-display text-[36px] font-semibold leading-[0.95] tracking-tight sm:text-[56px]">
+          Academic work.
+        </h3>
+        <p className="hidden max-w-sm text-[14px] text-white/55 sm:block">
+          Coursework and capstones from my M.S. Business Analytics at Roosevelt.
+        </p>
+      </motion.div>
+
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {academic.map((p, i) => (
+          <motion.div
+            key={p.name}
+            custom={i}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={fadeUp}
+            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 240, damping: 22 }}
+            className="group surface-glass premium-border relative flex flex-col overflow-hidden rounded-3xl"
+          >
+            <div className="relative overflow-hidden">
+              <img
+                src={p.img}
+                alt={p.name}
+                loading="lazy"
+                className="aspect-[16/10] w-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-110"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+              <span className="absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white backdrop-blur-md">
+                {p.tag}
+              </span>
+            </div>
+            <div className="flex flex-1 flex-col p-6">
+              <h4 className="font-display text-[20px] font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-flame">
+                {p.name}
+              </h4>
+              <p className="mt-3 flex-1 text-[14px] leading-relaxed text-white/65">
+                {p.desc}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {p.stack.map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-full border border-white/15 bg-white/[0.04] px-2.5 py-0.5 text-[11px] text-white/75"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         ))}
       </div>
     </Section>
