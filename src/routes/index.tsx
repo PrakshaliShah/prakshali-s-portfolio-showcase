@@ -147,7 +147,7 @@ function Hero() {
     >
       <motion.img
         src={heroPortrait}
-        alt="Portrait of Prakshali Shah"
+        alt="Chicago skyline"
         initial={{ scale: 1.03, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.6, ease: "easeOut" }}
