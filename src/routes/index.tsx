@@ -572,7 +572,7 @@ function Experience() {
     {
       company: "Roosevelt University",
       role: "Graduate Assistant",
-      period: "2024 — Now",
+      period: "2025 — 2026",
       note: "TA for analytics & data viz coursework; supporting faculty research on forecasting.",
     },
   ];
