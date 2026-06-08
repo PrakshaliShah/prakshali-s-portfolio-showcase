@@ -151,7 +151,7 @@ function Hero() {
         initial={{ scale: 1.03, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.6, ease: "easeOut" }}
-        className="absolute inset-0 h-full w-full object-contain object-center bg-ink"
+        className="absolute inset-0 h-full w-full object-cover object-[35%_center]"
       />
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/75" />
