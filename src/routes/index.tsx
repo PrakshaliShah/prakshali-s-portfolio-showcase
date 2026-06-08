@@ -370,23 +370,29 @@ function Work() {
     {
       name: "MedData Corp — Security Transformation",
       tag: "Healthcare · Strategy",
+      year: "2025",
       desc: "A $1.65M security transformation roadmap protecting 10M+ users' PHI — tiered MFA, role-based data minimization, and a break-glass protocol returning 14.5× on risk prevention.",
       stack: ["HIPAA", "Risk Modeling", "Strategy"],
       img: projectMeddata,
+      href: "https://drive.google.com/drive/folders/1v-u7vvHyvDqs7TmkL1gb0RGYDbeCF0YG",
     },
     {
       name: "Amazon Delivery Data Analysis",
       tag: "Logistics · EDA",
+      year: "2025",
       desc: "Exploratory analysis of Amazon delivery operations — uncovering driver, route, and weather patterns that drive on-time performance and last-mile efficiency.",
       stack: ["Python", "Pandas", "Visualization"],
       img: projectAmazon,
+      href: "https://drive.google.com/drive/folders/1Fr_v4lFWgIUJwQVneCp849FZDCG58gR7",
     },
     {
       name: "Superstore Sales Analytics",
       tag: "Retail · BI",
+      year: "2025",
       desc: "End-to-end analytics on the Superstore dataset — segmentation, profitability and category dynamics surfaced through interactive dashboards.",
       stack: ["Tableau", "SQL", "Excel"],
       img: projectSuperstore,
+      href: "https://drive.google.com/drive/folders/1wCG3UYNSJLHp_M7uTP6gL3P-B_-0NkUC",
     },
   ];
 
