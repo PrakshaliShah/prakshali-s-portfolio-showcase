@@ -14,8 +14,8 @@ import {
   Plus,
 } from "lucide-react";
 import heroPortraitAsset from "@/assets/hero-flowers.jpeg.asset.json";
-import heroGradAsset from "@/assets/hero-grad-chicago.jpeg.asset.json";
-const heroPortrait = heroGradAsset.url;
+import heroChicagoAsset from "@/assets/hero-chicago.jpg.asset.json";
+const heroPortrait = heroChicagoAsset.url;
 const portrait = heroPortraitAsset.url;
 import projectTransitSafe from "@/assets/project-transit-safe.jpg";
 import projectLumina from "@/assets/project-lumina.jpg";
