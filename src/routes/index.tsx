@@ -824,7 +824,7 @@ function Footer() {
             <p className="mt-10 text-[12px] uppercase tracking-[0.2em] text-white/45">
               [ Email ]
             </p>
-            <p className="mt-1 text-[15px] text-white">hello@prakshali.com</p>
+            <p className="mt-1 text-[15px] text-white">prakshalis1@gmail.com</p>
             <p className="mt-6 text-[12px] uppercase tracking-[0.2em] text-white/45">
               [ Location ]
             </p>
