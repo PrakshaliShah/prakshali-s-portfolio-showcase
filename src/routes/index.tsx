@@ -13,8 +13,10 @@ import {
   MapPin,
   Plus,
 } from "lucide-react";
-import heroPortrait from "@/assets/hero-chicago.jpg";
-import portrait from "@/assets/portrait-elegant.jpg";
+import heroPortraitAsset from "@/assets/hero-flowers.jpeg.asset.json";
+import portraitAsset from "@/assets/portrait-grad.jpeg.asset.json";
+const heroPortrait = heroPortraitAsset.url;
+const portrait = portraitAsset.url;
 import projectTransitSafe from "@/assets/project-transit-safe.jpg";
 import projectLumina from "@/assets/project-lumina.jpg";
 import projectTradespend from "@/assets/project-tradespend.jpg";
