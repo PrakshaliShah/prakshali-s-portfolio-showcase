@@ -239,12 +239,12 @@ function Marquee() {
   const items = ["PYTHON", "SQL", "TABLEAU", "POWER BI", "DOCKER", "FASTAPI", "PANDAS", "REACT", "AIRFLOW"];
   const row = [...items, ...items];
   return (
-    <section className="relative overflow-hidden border-y border-white/10 bg-ink py-10">
-      <div className="flex w-max gap-16 [animation:marquee_30s_linear_infinite]">
+    <section className="relative overflow-hidden border-y border-white/10 bg-ink py-5">
+      <div className="flex w-max gap-10 [animation:marquee_30s_linear_infinite]">
         {row.map((t, i) => (
           <span
             key={i}
-            className="font-display text-[36px] font-semibold tracking-tight text-white/15 sm:text-[56px]"
+            className="font-display text-[16px] font-semibold tracking-tight text-white/20 sm:text-[22px]"
           >
             {t} <span className="text-flame/60">✦</span>
           </span>
@@ -522,16 +522,22 @@ function Work() {
 function Experience() {
   const jobs = [
     {
-      company: "Numerator",
-      role: "Consumer Insights · Analyst",
-      period: "2024 — 2025",
-      note: "Surfaced behavioral signals across millions of CPG transactions for Fortune-500 brand teams.",
-    },
-    {
       company: "Roosevelt University",
       role: "Graduate Assistant",
       period: "2025 — 2026",
-      note: "TA for analytics & data viz coursework; supporting faculty research on forecasting.",
+      note: "Translated complex academic research into interactive data visualizations for 500+ university stakeholders and instructed hands-on analytics workshops.",
+    },
+    {
+      company: "Numerator",
+      role: "Client Service Associate I & II",
+      period: "2022 — 2024",
+      note: "Guided category management strategies for a $10M+ CPG portfolio and designed dynamic Power BI dashboards using syndicated panel data.",
+    },
+    {
+      company: "Numerator",
+      role: "Data Analyst & Data Quality Lead",
+      period: "2020 — 2022",
+      note: "Guaranteed reporting precision across massive consumer datasets by deploying automated Python anomaly detection algorithms and optimizing SQL pipelines.",
     },
   ];
 
@@ -580,11 +586,11 @@ function Experience() {
 /* ===================== SKILLS ===================== */
 function Skills() {
   const stack = [
-    { name: "Python", abbr: "Py" },
-    { name: "SQL", abbr: "SQL" },
-    { name: "Tableau", abbr: "Tb" },
-    { name: "Power BI", abbr: "BI" },
-    { name: "Docker", abbr: "Dk" },
+    { name: "SQL", abbr: "SQL", sub: "Data Extraction & Structuring" },
+    { name: "Power BI", abbr: "BI", sub: "Dashboards & Scorecards — requested by Kraft Heinz and Essity" },
+    { name: "Numerator", abbr: "Nu", sub: "Syndicated Panel Data (Circana / Nielsen)" },
+    { name: "Advanced Excel", abbr: "Ex", sub: "VBA Macros & Modeling" },
+    { name: "Python", abbr: "Py", sub: "Pipeline Automation & ML" },
   ];
   return (
     <Section eyebrow="Toolbox" icon={Wrench}>
@@ -616,7 +622,7 @@ function Skills() {
               <p className="font-display text-[18px] font-semibold text-white">
                 {s.name}
               </p>
-              <p className="text-[12px] text-white/55">Daily driver</p>
+              <p className="text-[12px] leading-snug text-white/55">{s.sub}</p>
             </div>
           </motion.div>
         ))}
@@ -627,40 +633,58 @@ function Skills() {
 
 /* ===================== EDUCATION ===================== */
 function Education() {
+  const degrees = [
+    {
+      school: "Roosevelt University",
+      title: "M.S. in Business Analytics",
+      sub: "Chicago, IL · Graduated May 2026 · 4.0 GPA",
+      tags: ["Forecasting", "Data Viz", "Predictive Analytics", "Market Intelligence"],
+    },
+    {
+      school: "Parul University",
+      title: "B.Tech in Computer Science & Engineering",
+      sub: "India · April 2020 · 8.0/10.0 GPA",
+      tags: ["Data Pipelines", "SQL", "Python", "System Architecture"],
+    },
+  ];
   return (
     <Section eyebrow="Education" icon={GraduationCap}>
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
-        variants={fadeUp}
-        className="surface-glass premium-border relative overflow-hidden rounded-3xl p-8 sm:p-12"
-      >
-        <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-flame/30 blur-3xl" />
-        <div className="relative flex flex-wrap items-start justify-between gap-6">
-          <div>
-            <p className="text-[12px] uppercase tracking-[0.2em] text-flame">
-              Roosevelt University
-            </p>
-            <h3 className="mt-3 font-display text-[32px] font-semibold leading-tight text-white sm:text-[44px]">
-              M.S. in Business Analytics
-            </h3>
-            <p className="mt-2 text-[15px] text-white/60">
-              Chicago, IL · Expected May 2026
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {["Statistics", "ML", "Data Viz", "Forecasting"].map((t) => (
-              <span
-                key={t}
-                className="rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-medium text-white/75"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-      </motion.div>
+      <div className="grid gap-6">
+        {degrees.map((d, i) => (
+          <motion.div
+            key={d.title}
+            custom={i}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            className="surface-glass premium-border relative overflow-hidden rounded-3xl p-8 sm:p-12"
+          >
+            <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-flame/30 blur-3xl" />
+            <div className="relative flex flex-wrap items-start justify-between gap-6">
+              <div>
+                <p className="text-[12px] uppercase tracking-[0.2em] text-flame">
+                  {d.school}
+                </p>
+                <h3 className="mt-3 font-display text-[28px] font-semibold leading-tight text-white sm:text-[40px]">
+                  {d.title}
+                </h3>
+                <p className="mt-2 text-[15px] text-white/60">{d.sub}</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {d.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-medium text-white/75"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </Section>
   );
 }
@@ -755,13 +779,15 @@ function Contact() {
 
           <div className="mt-16 grid gap-4 sm:grid-cols-3">
             {[
-              { label: "Email", value: "hello@prakshali.com", href: "mailto:hello@prakshali.com" },
-              { label: "LinkedIn", value: "in/prakshali-shah", href: "#" },
-              { label: "GitHub", value: "@prakshali", href: "#" },
+              { label: "Email", value: "prakshalis1@gmail.com", href: "mailto:prakshalis1@gmail.com" },
+              { label: "LinkedIn", value: "in/prakshali-shah", href: "https://www.linkedin.com/in/prakshali-shah/" },
+              { label: "GitHub", value: "@PrakshaliShah", href: "https://github.com/PrakshaliShah" },
             ].map((c) => (
               <a
                 key={c.label}
                 href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel={c.href.startsWith("http") ? "noreferrer" : undefined}
                 className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-flame/50 hover:bg-white/[0.06]"
               >
                 <div>
@@ -798,7 +824,7 @@ function Footer() {
             <p className="mt-10 text-[12px] uppercase tracking-[0.2em] text-white/45">
               [ Email ]
             </p>
-            <p className="mt-1 text-[15px] text-white">hello@prakshali.com</p>
+            <p className="mt-1 text-[15px] text-white">prakshalis1@gmail.com</p>
             <p className="mt-6 text-[12px] uppercase tracking-[0.2em] text-white/45">
               [ Location ]
             </p>
