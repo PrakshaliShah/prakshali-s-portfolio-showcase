@@ -882,7 +882,7 @@ function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-[12px] text-white/50">
           <p>© 2026 Prakshali Shah. All rights reserved.</p>
-          <p>Inspired by Noora · Built with care.</p>
+          <p>Built with care.</p>
         </div>
       </div>
     </footer>
