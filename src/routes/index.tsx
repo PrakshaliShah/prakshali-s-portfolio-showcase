@@ -390,169 +390,232 @@ function Work() {
     },
   ];
 
-  return (
-    <Section id="work" eyebrow="Projects" icon={Folder}>
-      <motion.h2
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
-        variants={fadeUp}
-        className="font-display text-[64px] font-semibold leading-[0.95] tracking-tight sm:text-[128px]"
-      >
-        Projects.
-      </motion.h2>
-      <motion.p
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
-        variants={fadeUp}
-        custom={1}
-        className="mt-6 max-w-xl text-[17px] text-muted"
-      >
-        Live builds where data, design and a little engineering had to meet in
-        the middle — plus a few academic deep-dives.
-      </motion.p>
+  const [hovered, setHovered] = useState<number | null>(null);
 
-      <div className="mt-20 space-y-10">
+  return (
+    <Section id="work" eyebrow="Index — Selected work" icon={Folder}>
+      {/* Header */}
+      <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        <motion.h2
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp}
+          className="font-display text-[64px] font-semibold leading-[0.9] tracking-tight sm:text-[120px]"
+        >
+          Selected
+          <br />
+          <span className="italic text-flame">work,</span> 2025—26.
+        </motion.h2>
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp}
+          custom={1}
+          className="flex max-w-sm flex-col gap-4"
+        >
+          <p className="text-[15px] leading-relaxed text-white/65">
+            A working index of live builds and academic deep-dives — where data,
+            design and a little engineering had to meet in the middle.
+          </p>
+          <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-white/40">
+            <span className="h-px w-10 bg-white/30" />
+            <span>{projects.length + academic.length} entries</span>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Live projects — hover-reveal index list */}
+      <div
+        className="relative mt-20 border-t border-white/12"
+        onMouseLeave={() => setHovered(null)}
+      >
         {projects.map((p, i) => (
           <motion.a
             key={p.name}
             href={p.href}
             target="_blank"
             rel="noreferrer"
-            custom={i}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-            whileHover={{ scale: 1.015, y: -8 }}
-            transition={{ type: "spring", stiffness: 220, damping: 22 }}
-            className={`group surface-glass premium-border relative grid overflow-hidden rounded-[28px] p-4 transition-shadow duration-500 hover:shadow-[0_50px_120px_-30px_rgba(228,80,40,0.5)] sm:p-5 lg:grid-cols-[1.4fr_1fr] lg:gap-6 ${
-              i % 2 === 1 ? "lg:[direction:rtl]" : ""
+            onMouseEnter={() => setHovered(i)}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+            className={`group relative block border-b border-white/12 transition-opacity duration-500 ${
+              hovered !== null && hovered !== i ? "opacity-30" : "opacity-100"
             }`}
           >
-            <div className="relative overflow-hidden rounded-[22px] [direction:ltr]">
-              <motion.img
-                src={p.img}
-                alt={p.name}
-                loading="lazy"
-                className="aspect-[16/10] w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent transition-opacity duration-500" />
-              <div className="pointer-events-none absolute -inset-x-1/2 top-0 h-full -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-[1100ms] ease-out group-hover:translate-x-[160%]" />
+            <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-7 sm:gap-8 sm:py-10 lg:py-14">
+              <span className="font-mono text-[11px] tracking-[0.25em] text-white/35 sm:text-[12px]">
+                / 0{i + 1}
+              </span>
 
-              <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-black/55 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white backdrop-blur-md">
-                  {p.tag}
-                </span>
-                <span className="rounded-full bg-flame/80 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-md">
-                  {p.year}
-                </span>
-                {p.wip && (
-                  <span className="rounded-full bg-white/90 px-3 py-1 text-[11px] font-medium text-ink backdrop-blur-md">
-                    Work in progress
-                  </span>
-                )}
-              </div>
-              <div className="absolute bottom-4 right-4 grid h-12 w-12 place-items-center rounded-full bg-white/95 text-ink shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:bg-flame group-hover:text-white">
-                <ArrowUpRight className="h-5 w-5" />
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-between px-4 pb-4 pt-4 [direction:ltr] sm:px-6 sm:pb-6 sm:pt-5">
-              <div>
-                <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-flame">
-                  ({String(i + 1).padStart(2, "0")}) — {p.year}
-                </p>
-                <h3 className="mt-4 font-display text-[34px] font-semibold leading-[1.05] text-white transition-colors duration-300 group-hover:text-flame sm:text-[44px]">
+              <div className="min-w-0">
+                <h3 className="font-display text-[34px] font-semibold leading-[0.92] tracking-tight text-white sm:text-[64px] lg:text-[88px]">
                   {p.name}
+                  {p.wip && (
+                    <span className="ml-3 inline-block translate-y-[-0.4em] rounded-full bg-flame/15 px-3 py-1 align-top text-[10px] font-medium uppercase tracking-[0.2em] text-flame">
+                      WIP
+                    </span>
+                  )}
                 </h3>
-                <p className="mt-4 text-[16px] leading-relaxed text-white/70">
-                  {p.desc}
-                </p>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-2">
-                {p.stack.map((s) => (
-                  <span
-                    key={s}
-                    className="rounded-full border border-white/15 bg-white/[0.04] px-3 py-1 text-[12px] text-white/80"
-                  >
-                    {s}
+                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.22em] text-white/45 sm:text-[12px]">
+                  <span>{p.tag}</span>
+                  <span className="h-1 w-1 rounded-full bg-white/30" />
+                  <span>{p.year}</span>
+                  <span className="hidden h-1 w-1 rounded-full bg-white/30 sm:inline-block" />
+                  <span className="hidden text-white/55 sm:inline">
+                    {p.stack.join(" · ")}
                   </span>
-                ))}
+                </div>
+                {/* Mobile thumbnail */}
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  loading="lazy"
+                  className="mt-5 aspect-[16/10] w-full rounded-xl object-cover lg:hidden"
+                />
               </div>
 
-              <div className="mt-8 inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.2em] text-white/55 transition group-hover:text-white">
-                Visit project
-                <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 text-white/60 transition-all duration-500 group-hover:border-flame group-hover:bg-flame group-hover:text-white sm:h-14 sm:w-14">
+                <ArrowUpRight className="h-5 w-5 transition-transform duration-500 group-hover:rotate-0 sm:h-6 sm:w-6" />
               </div>
             </div>
+
+            {/* Desktop hover preview */}
+            <AnimatePresence>
+              {hovered === i && (
+                <motion.div
+                  key="preview"
+                  initial={{ opacity: 0, scale: 0.92, y: 12 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 8 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="pointer-events-none absolute right-24 top-1/2 z-20 hidden -translate-y-1/2 lg:block"
+                >
+                  <div className="relative h-56 w-80 overflow-hidden rounded-2xl shadow-[0_40px_100px_-20px_rgba(228,80,40,0.55)] ring-1 ring-white/10 xl:h-64 xl:w-96">
+                    <img
+                      src={p.img}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                      <p className="text-[11px] uppercase tracking-[0.2em] text-white/70">
+                        View live →
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.a>
         ))}
       </div>
 
-      {/* Academic projects */}
+      {/* Descriptions ticker — small contextual block under list */}
       <motion.div
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
         variants={fadeUp}
-        className="mt-28 flex items-end justify-between gap-6"
+        className="mt-10 grid gap-6 sm:grid-cols-3"
       >
-        <h3 className="font-display text-[36px] font-semibold leading-[0.95] tracking-tight sm:text-[56px]">
-          Academic work.
-        </h3>
-        <p className="hidden max-w-sm text-[14px] text-white/55 sm:block">
-          Coursework and capstones from my M.S. Business Analytics at Roosevelt.
+        {projects.map((p, i) => (
+          <div key={p.name} className="flex flex-col gap-2">
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
+              / 0{i + 1} — {p.name}
+            </p>
+            <p className="text-[13px] leading-relaxed text-white/55">
+              {p.desc}
+            </p>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* Academic — bento */}
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={fadeUp}
+        className="mt-32 flex flex-col gap-4 border-t border-white/12 pt-12 sm:flex-row sm:items-end sm:justify-between"
+      >
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-flame">
+            ✦ Coursework — Roosevelt M.S.
+          </p>
+          <h3 className="mt-3 font-display text-[36px] font-semibold leading-[0.95] tracking-tight sm:text-[60px]">
+            Academic <span className="italic text-white/60">notebook.</span>
+          </h3>
+        </div>
+        <p className="max-w-xs text-[13px] text-white/55">
+          Capstones, strategy decks and analytics rebuilds from the program.
         </p>
       </motion.div>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {academic.map((p, i) => (
-          <motion.div
-            key={p.name}
-            custom={i}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={fadeUp}
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 240, damping: 22 }}
-            className="group surface-glass premium-border relative flex flex-col overflow-hidden rounded-3xl"
-          >
-            <div className="relative overflow-hidden">
+      <div className="mt-10 grid auto-rows-[220px] grid-cols-1 gap-4 sm:grid-cols-6 sm:auto-rows-[200px]">
+        {academic.map((p, i) => {
+          // Bento spans: first big (4 col, 2 row), others 2-col, 1-row
+          const span =
+            i === 0
+              ? "sm:col-span-4 sm:row-span-2"
+              : i === 1
+                ? "sm:col-span-2 sm:row-span-2"
+                : "sm:col-span-3";
+          return (
+            <motion.div
+              key={p.name}
+              custom={i}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={fadeUp}
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 240, damping: 24 }}
+              className={`group relative overflow-hidden rounded-3xl ring-1 ring-white/10 ${span}`}
+            >
               <img
                 src={p.img}
                 alt={p.name}
                 loading="lazy"
-                className="aspect-[16/10] w-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-110"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-              <span className="absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white backdrop-blur-md">
-                {p.tag}
-              </span>
-            </div>
-            <div className="flex flex-1 flex-col p-6">
-              <h4 className="font-display text-[20px] font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-flame">
-                {p.name}
-              </h4>
-              <p className="mt-3 flex-1 text-[14px] leading-relaxed text-white/65">
-                {p.desc}
-              </p>
-              <div className="mt-5 flex flex-wrap gap-1.5">
-                {p.stack.map((s) => (
-                  <span
-                    key={s}
-                    className="rounded-full border border-white/15 bg-white/[0.04] px-2.5 py-0.5 text-[11px] text-white/75"
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
+              <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-7">
+                <span className="self-start rounded-full bg-white/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-white backdrop-blur-md">
+                  {p.tag}
+                </span>
+                <div>
+                  <h4
+                    className={`font-display font-semibold leading-[1.05] text-white transition-colors duration-300 group-hover:text-flame ${
+                      i === 0 ? "text-[26px] sm:text-[34px]" : "text-[20px] sm:text-[22px]"
+                    }`}
                   >
-                    {s}
-                  </span>
-                ))}
+                    {p.name}
+                  </h4>
+                  <p
+                    className={`mt-2 text-white/70 ${
+                      i === 0 ? "text-[14px] leading-relaxed sm:text-[15px]" : "text-[12px] leading-snug sm:text-[13px]"
+                    }`}
+                  >
+                    {p.desc}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {p.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="rounded-full border border-white/20 bg-black/30 px-2 py-0.5 text-[10px] text-white/80 backdrop-blur-sm"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
     </Section>
   );
