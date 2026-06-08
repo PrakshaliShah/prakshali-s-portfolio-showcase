@@ -458,7 +458,7 @@ function Work() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between p-4 [direction:ltr] sm:p-6">
+            <div className="flex flex-col justify-between px-4 pb-2 pt-4 [direction:ltr] sm:px-6 sm:pb-2 sm:pt-5 lg:pt-6">
               <div>
                 <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-flame">
                   ({String(i + 1).padStart(2, "0")}) — {p.year}
