@@ -831,9 +831,29 @@ function Footer() {
             <p className="mt-1 text-[15px] text-white">Chicago, IL</p>
           </div>
           {[
-            { t: "Navigation", l: ["Home", "About", "Projects", "Experience", "Contact"] },
-            { t: "Social", l: ["LinkedIn", "GitHub", "Twitter", "Dribbble"] },
-            { t: "Resources", l: ["Resume", "Reading list", "Now", "404"] },
+            {
+              t: "Navigation",
+              l: [
+                { label: "Home", href: "#top" },
+                { label: "About", href: "#about" },
+                { label: "Projects", href: "#work" },
+                { label: "Experience", href: "#experience" },
+                { label: "Contact", href: "#contact" },
+              ],
+            },
+            {
+              t: "Social",
+              l: [
+                { label: "LinkedIn", href: "https://www.linkedin.com/in/prakshali-shah/" },
+                { label: "GitHub", href: "https://github.com/PrakshaliShah" },
+              ],
+            },
+            {
+              t: "Resources",
+              l: [
+                { label: "Resume", href: "https://drive.google.com/drive/folders/1uXvVIeIjXzRBCDkrSVKyEm-W-0LA6iEK" },
+              ],
+            },
           ].map((c) => (
             <div key={c.t}>
               <p className="text-[12px] uppercase tracking-[0.2em] text-white/45">
@@ -841,12 +861,14 @@ function Footer() {
               </p>
               <ul className="mt-4 space-y-2.5">
                 {c.l.map((x) => (
-                  <li key={x}>
+                  <li key={x.label}>
                     <a
-                      href="#"
+                      href={x.href}
+                      target={x.href.startsWith("http") ? "_blank" : undefined}
+                      rel={x.href.startsWith("http") ? "noreferrer" : undefined}
                       className="text-[15px] text-white/85 hover:text-flame"
                     >
-                      {x}
+                      {x.label}
                     </a>
                   </li>
                 ))}
