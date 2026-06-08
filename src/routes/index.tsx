@@ -748,37 +748,6 @@ function Contact() {
             my inbox is open.
           </p>
 
-          <motion.form
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            custom={1}
-            onSubmit={(e) => e.preventDefault()}
-            className="mt-12 max-w-2xl space-y-8"
-          >
-            {[
-              { label: "Name *", placeholder: "Jane Foster" },
-              { label: "E-mail *", placeholder: "jane@email.com" },
-              { label: "Message *", placeholder: "Say hi 👋" },
-            ].map((f) => (
-              <div key={f.label} className="border-b border-white/15 pb-2">
-                <label className="block text-[12px] uppercase tracking-[0.18em] text-white/55">
-                  {f.label}
-                </label>
-                <input
-                  placeholder={f.placeholder}
-                  className="mt-2 w-full bg-transparent py-2 text-[16px] text-white placeholder:text-white/35 focus:outline-none"
-                />
-              </div>
-            ))}
-            <button
-              type="submit"
-              className="w-full rounded-full bg-white px-6 py-4 text-[15px] font-medium text-ink transition hover:bg-white/90"
-            >
-              Send message
-            </button>
-          </motion.form>
 
           <div className="mt-16 grid gap-4 sm:grid-cols-3">
             {[
