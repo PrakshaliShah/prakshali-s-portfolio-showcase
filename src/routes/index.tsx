@@ -437,7 +437,7 @@ function Work() {
                 loading="lazy"
                 className="aspect-[16/10] w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/0 to-black/0 transition-opacity duration-500" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent transition-opacity duration-500" />
               <div className="pointer-events-none absolute -inset-x-1/2 top-0 h-full -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-[1100ms] ease-out group-hover:translate-x-[160%]" />
 
               <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
