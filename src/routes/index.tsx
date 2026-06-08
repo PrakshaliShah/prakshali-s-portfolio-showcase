@@ -239,12 +239,12 @@ function Marquee() {
   const items = ["PYTHON", "SQL", "TABLEAU", "POWER BI", "DOCKER", "FASTAPI", "PANDAS", "REACT", "AIRFLOW"];
   const row = [...items, ...items];
   return (
-    <section className="relative overflow-hidden border-y border-white/10 bg-ink py-10">
-      <div className="flex w-max gap-16 [animation:marquee_30s_linear_infinite]">
+    <section className="relative overflow-hidden border-y border-white/10 bg-ink py-5">
+      <div className="flex w-max gap-10 [animation:marquee_30s_linear_infinite]">
         {row.map((t, i) => (
           <span
             key={i}
-            className="font-display text-[36px] font-semibold tracking-tight text-white/15 sm:text-[56px]"
+            className="font-display text-[16px] font-semibold tracking-tight text-white/20 sm:text-[22px]"
           >
             {t} <span className="text-flame/60">✦</span>
           </span>
