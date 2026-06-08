@@ -15,9 +15,12 @@ import {
 } from "lucide-react";
 import heroPortrait from "@/assets/hero-chicago.jpg";
 import portrait from "@/assets/portrait-elegant.jpg";
-import projectTransit from "@/assets/project-transit.jpg";
-import projectOpenly from "@/assets/project-openly.jpg";
-import projectNumerator from "@/assets/project-numerator.jpg";
+import projectTransitSafe from "@/assets/project-transit-safe.jpg";
+import projectLumina from "@/assets/project-lumina.jpg";
+import projectTradespend from "@/assets/project-tradespend.jpg";
+import projectMeddata from "@/assets/project-meddata.jpg";
+import projectAmazon from "@/assets/project-amazon.jpg";
+import projectSuperstore from "@/assets/project-superstore.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
