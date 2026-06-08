@@ -351,7 +351,7 @@ function Work() {
       desc: "An AI-driven financial optimization platform that aggregates external financial APIs and runs a matching algorithm over complex variable reward structures to maximize credit card returns across simulated spending profiles.",
       stack: ["Python", "Data Pipelines", "Financial APIs", "ML"],
       img: projectLumina,
-      href: "https://lumina-ai.lovable.app",
+      href: "https://preview--lumina-ai-card.lovable.app/",
       wip: true,
     },
     {
