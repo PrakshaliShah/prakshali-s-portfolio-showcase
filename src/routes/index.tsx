@@ -14,9 +14,8 @@ import {
   Plus,
 } from "lucide-react";
 import heroPortraitAsset from "@/assets/hero-flowers.jpeg.asset.json";
-import portraitAsset from "@/assets/portrait-grad.jpeg.asset.json";
-const heroPortrait = heroPortraitAsset.url;
-const portrait = portraitAsset.url;
+const heroPortrait = "https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?auto=format&fit=crop&w=2400&q=80";
+const portrait = heroPortraitAsset.url;
 import projectTransitSafe from "@/assets/project-transit-safe.jpg";
 import projectLumina from "@/assets/project-lumina.jpg";
 import projectTradespend from "@/assets/project-tradespend.jpg";
@@ -151,7 +150,7 @@ function Hero() {
         initial={{ scale: 1.08, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.6, ease: "easeOut" }}
-        className="absolute inset-0 h-full w-full object-cover object-[center_20%]"
+        className="absolute inset-0 h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/75" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(228,80,40,0.32),transparent_55%)]" />
