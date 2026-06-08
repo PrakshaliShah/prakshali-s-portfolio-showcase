@@ -218,11 +218,12 @@ function Hero() {
         >
           <h1 className="font-display text-[32px] font-semibold leading-[1.1] tracking-tight text-white sm:text-[44px]">
             M.S. Business Analytics. <br />
-            Builder, learner, storyteller. <br />
-            <span className="text-white/55">
-              Turning messy data into projects people actually use.
+            Analyst, strategist, storyteller. <br />
+            <span className="text-white">
+              Turning complex consumer data into actionable category growth.
             </span>
           </h1>
+
           <a
             href="#work"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[14px] font-medium text-ink transition hover:bg-white/90 hover:gap-3"
@@ -266,14 +267,14 @@ function About() {
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
         variants={fadeUp}
-        className="font-display text-[40px] font-semibold leading-[1.05] tracking-tight sm:text-[64px]"
+        className="font-display text-[40px] font-semibold leading-[1.05] tracking-tight text-white sm:text-[64px]"
       >
-        A builder who thinks in data.{" "}
-        <span className="text-faded">
-          Comfortable in a notebook, a Figma file, or a stand-up — wherever the
-          decision has to get made.
+        A data professional who speaks the language of business.{" "}
+        <span className="text-white">
+          Comfortable querying massive consumer panel datasets, tracking category dynamics, or presenting actionable recommendations to stakeholders.
         </span>
       </motion.h2>
+
 
       <a
         href="#contact"
