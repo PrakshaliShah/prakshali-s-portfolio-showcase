@@ -13,8 +13,10 @@ import {
   MapPin,
   Plus,
 } from "lucide-react";
-import heroPortrait from "@/assets/hero-chicago.jpg";
-import portrait from "@/assets/portrait-elegant.jpg";
+import heroPortraitAsset from "@/assets/hero-flowers.jpeg.asset.json";
+import portraitAsset from "@/assets/portrait-grad.jpeg.asset.json";
+const heroPortrait = heroPortraitAsset.url;
+const portrait = portraitAsset.url;
 import projectTransitSafe from "@/assets/project-transit-safe.jpg";
 import projectLumina from "@/assets/project-lumina.jpg";
 import projectTradespend from "@/assets/project-tradespend.jpg";
@@ -880,7 +882,7 @@ function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-[12px] text-white/50">
           <p>© 2026 Prakshali Shah. All rights reserved.</p>
-          <p>Inspired by Noora · Built with care.</p>
+          <p>Built with care.</p>
         </div>
       </div>
     </footer>
