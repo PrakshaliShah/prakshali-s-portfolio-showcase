@@ -779,9 +779,9 @@ function Contact() {
 
           <div className="mt-16 grid gap-4 sm:grid-cols-3">
             {[
-              { label: "Email", value: "hello@prakshali.com", href: "mailto:hello@prakshali.com" },
-              { label: "LinkedIn", value: "in/prakshali-shah", href: "#" },
-              { label: "GitHub", value: "@prakshali", href: "#" },
+              { label: "Email", value: "prakshalis1@gmail.com", href: "mailto:prakshalis1@gmail.com" },
+              { label: "LinkedIn", value: "in/prakshali-shah", href: "https://www.linkedin.com/in/prakshali-shah/" },
+              { label: "GitHub", value: "@PrakshaliShah", href: "https://github.com/PrakshaliShah" },
             ].map((c) => (
               <a
                 key={c.label}
