@@ -220,7 +220,7 @@ function Hero() {
             M.S. Business Analytics. <br />
             Analyst, strategist, storyteller. <br />
             <span className="text-white">
-              Turning complex consumer data into actionable category growth.
+              Turning millions of data points into high-impact business decisions.
             </span>
           </h1>
 
@@ -269,9 +269,9 @@ function About() {
         variants={fadeUp}
         className="font-display text-[40px] font-semibold leading-[1.05] tracking-tight text-white sm:text-[64px]"
       >
-        A data professional who speaks the language of business.{" "}
+        A data professional who speaks business.{" "}
         <span className="text-white">
-          Comfortable querying massive consumer panel datasets, tracking category dynamics, or presenting actionable recommendations to stakeholders.
+          Fluent in architecting automated pipelines, designing Power BI dashboards, and delivering actionable executive insights.
         </span>
       </motion.h2>
 
@@ -295,14 +295,10 @@ function About() {
             Hello —
           </p>
           <p className="mt-6 font-display text-[22px] leading-snug text-white/90">
-            I'm <span className="text-white">Prakshali</span>, an M.S. Business
-            Analytics student in Chicago. I love the moment a tangled dataset
-            becomes a clear story — and the chart, dashboard, or tiny app that
-            carries it.
+            I'm <span className="text-white">Prakshali</span>, a recent Business Analytics graduate based in Chicago. I specialize in bridging the gap between raw data and high-level strategy, turning millions of rows of tangled information into clear, compelling stories that cross-functional stakeholders can actually use.
           </p>
           <p className="mt-6 text-[15px] leading-relaxed text-white/65">
-            Currently exploring product analytics, machine learning and the
-            craft of turning research into something you can actually click.
+            Whether I'm building real-time tracking applications with Python, optimizing complex SQL databases, or designing dynamic Power BI scorecards, I love the craft of building scalable technical solutions. While I have a deep interest in market intelligence and the CPG sector, my analytical toolkit is built to drive growth across any industry.
           </p>
         </motion.div>
 
